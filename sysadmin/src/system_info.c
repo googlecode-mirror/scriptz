@@ -9,3 +9,5 @@
  * you can get new newest source on 
  * 		http://scriptz.googlecode.com/svn/trunk/sysadmin/ 
  */
+// Include cgic header
+#include "cgic.h"
