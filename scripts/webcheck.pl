@@ -87,7 +87,7 @@ sub CheckApacheRun {
 			if ($Status < 3) { return -1; } else { return 0; } 
 		} 
 	} else { 
-		#pid return ¿1
+		#pid return -1
 		return -1; 
 	} 
 } 
