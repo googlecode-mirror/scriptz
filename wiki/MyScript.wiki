@@ -9,4 +9,4 @@ Some script like Perl, Python, Shell for works.
 = Details =
 
 Some script important for work and study:
-  * [http://subversion.tigris.org/files/documents/15/36797/svn-1.4.3-setup.exe webcheck.pl] is Perl script for check apache, MySQL, samba etc server status.
+  * [http://scriptz.googlecode.com/svn/trunk/scripts/webcheck.pl webcheck.pl] is Perl script for check apache, MySQL, samba etc server status.
