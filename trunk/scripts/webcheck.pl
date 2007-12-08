@@ -1,13 +1,16 @@
 #!/usr/bin/perl
+# $Id$
+# Author: zhuzhu@perlchina.org
+# License: MIT
 
-#apache pid文件 
+#apache pid file location
 $pidApache = "/usr/local/httpd/logs/httpd.pid"; 
-#apache操作文件 
+#apache controller file location
 $ctlApache = "/usr/local/httpd/bin/apachectl"; 
 
-#mysql pid文件 
+#mysql pid file location
 $pidMysql = "/db/mysql/jqinfo.pid"; 
-#mysql操作文件 
+#mysql controller file location
 $ctlMysql = "/etc/init.d/mysql"; 
 
 $isRunApache = 1; 
