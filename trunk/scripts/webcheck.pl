@@ -20,13 +20,11 @@ $isRunApache = 1;
 $isRunMysql = 1; 
 while (true) { 
 	$nowLoadavg = CheckLoadavg(); 
-	if ($nowLoadavg > 10 && $isRunApache == 1) { 
+	if ($nowLoadavg > 15 && $isRunApache == 1) { 
 		# Check httpd run status
 		while (CheckApacheRun() == 0) { 
 			system("$ctlApache stop"); 
-			print "apache stop";
 			SendMail("[Eread Dev Server] httpd stop");
-			print "mail sent";
 			sleep(20); 
 		} 
 		$isRunApache = 0; 
@@ -37,7 +35,7 @@ while (true) {
 		sleep(60); 
 	}
 	$nowMysql = CheckMysqlLink();
-	if ($nowMysql > 15 && $isRunMysql == 1) { 
+	if ($nowMysql > 20 && $isRunMysql == 1) { 
 		#Mysql connection limit to 60 
 		while (CheckMysqlRun() == 0) { 
 			system("$ctlMysql stop"); 
@@ -84,7 +82,7 @@ sub CheckApacheRun {
 			return -1; 
 		} else { 
 			$Status = `ps -ef|grep httpd|wc -l`; 
-			if ($Status < 3) { return -1; } else { return 0; } 
+			if ($Status < 2) { return -1; } else { return 0; } 
 		} 
 	} else { 
 		#pid return -1
@@ -106,5 +104,5 @@ sub CheckLoadavg {
 
 sub SendMail {
 	my $msg = shift;
-	system("echo \"\" | mail -s \"$msg\" $mailAddress");
+	system("echo \"Date: `date +%F\\ %r `\" | mail -s \"$msg\" $mailAddress");
 }
