@@ -1,4 +1,5 @@
 #!/bin/sh
+# $Id$
 # author: zhuzhu@perlchina.org
 # date: 2007-11-26
 # Lisence: MIT
