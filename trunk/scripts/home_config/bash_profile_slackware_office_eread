@@ -1,0 +1,2 @@
+# $Id$
+export PATH="$HOME/bin:/usr/sbin:/sbin:/usr/local/sbin:$PATH"
