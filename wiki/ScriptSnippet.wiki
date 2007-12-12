@@ -1,0 +1,8 @@
+#summary my script snippet for life and work.
+
+= PHP =
+
+ * [PageName PHP Template] is a small template class for PHP language.
+
+
+= SQLite =
