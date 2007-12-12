@@ -1,4 +1,4 @@
-#PHP Template Wikipage
+#PHP Template Wikipage.
 
 = PHP Template =
 
