@@ -6,8 +6,8 @@
 Add your content here.
 
 = 数据表操作 =
-[OracleAutoField 自增字段]
-[OracleAlterTable 更新表结构]
+ * [OracleAutoField 自增字段]
+ * [OracleAlterTable 更新表结构]
 
 
 = Details =
