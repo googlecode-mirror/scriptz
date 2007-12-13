@@ -3,6 +3,9 @@
 
 = How to use Sqlite =
 
+== Tutorial ==
+[http://souptonuts.sourceforge.net/readme_sqlite_tutorial.html SQLite Tutorial]
+
 == Create Tables ==
 
 {{{
