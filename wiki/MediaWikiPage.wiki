@@ -1,0 +1,6 @@
+#summary media wiki page, such as libgif.
+
+= Media Wiki Page =
+
+ * [http://wwwcdf.pd.infn.it/libgif/index.html libgif]
+
