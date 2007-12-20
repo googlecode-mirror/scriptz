@@ -9,6 +9,9 @@ Add your content here.
  * [OracleAutoField 自增字段]
  * [OracleAlterTable 更新表结构]
 
+= 外部链接 =
+ * [http://www.techonthenet.com/oracle/ Techonthenet]
+
 
 = Details =
 
