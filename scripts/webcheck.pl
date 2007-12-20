@@ -104,5 +104,5 @@ sub CheckLoadavg {
 
 sub SendMail {
 	my $msg = shift;
-	system("export LANG=c && echo \"Date: `date +%F\\ %r `\n\n `w` \n\n `ps auxf` \n\n `lynx http://127.0.0.1/server-status -dump`\" | mail -s \"$msg\" $mailAddress");
+	system("export LANG=c && echo \"Date: `date +%F\\ %r `\n\n `w` \n\n `ps auxf` \n\n `lynx http://127.0.0.1/server-status -dump` \n\n `mysql -uroot -p123456 --execute=\"show full processlist\"`\" | mail -s \"$msg\" $mailAddress");
 }
