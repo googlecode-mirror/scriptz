@@ -104,5 +104,5 @@ sub CheckLoadavg {
 
 sub SendMail {
 	my $msg = shift;
-	system("echo \"Date: `date +%F\\ %r `\n\n `w` \n\n `ps auxf`\" | mail -s \"$msg\" $mailAddress");
+	system("export LANG=c && echo \"Date: `date +%F\\ %r `\n\n `w` \n\n `ps auxf`\" | mail -s \"$msg\" $mailAddress");
 }
