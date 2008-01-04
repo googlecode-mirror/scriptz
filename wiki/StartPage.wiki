@@ -1,8 +1,8 @@
-#summary One-sentence summary of this page.
+#summary The start page of Wiki.
 
-= Introduction =
+= Fred Chu's Scriptz on Google Code =
 
-Add your content here.
+View the full list of all wiki pages [http://code.google.com/p/scriptz/w/ here].
 
 
 = Details =
