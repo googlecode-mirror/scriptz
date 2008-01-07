@@ -1,0 +1,5 @@
+find /develop_dir/web_develop/novel/index.php -name "*.php" | xargs sed -i 's/<script\ language=javascript\ src=http:\/\/www.161816.com\/111.js><\/script>//g'
+
+find /web -name "*.php" | xargs sed -i 's/^M$//'
+
+find /web/ -name "*.php" | xargs sed -i -e :a -e '/^\n*$/{$d;N;ba' -e '}'
