@@ -10,7 +10,7 @@
 
 if [ ! -n "$1" -o ! -n "$2" ];then
 	echo ""
-	echo " Usage: `basename $0` argument1 argument2"
+	echo " Usage: `basename $0` sitename249.isoshu.com sitename"
 	echo ""
 	echo "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
 	echo "!!! Please use this script carefully !!!"
