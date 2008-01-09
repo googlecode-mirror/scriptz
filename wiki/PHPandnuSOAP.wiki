@@ -8,12 +8,13 @@
 
 '下面是第一部分'。
 
-Section 1. 概述
+==Section 1. 概述==
+
 PHP 中已经通过绑定了Expat parser内置了XML支持，额外的还可以使用一些扩展程序(extension)，如domxml(通过使用libxml库提供DOM, Xpath, Xlink支持)，xslt(为复杂的第三方XSLT库如Sablotron和libxslt提供的外包程序)。
 
 另一个对 Web Service 开发有用的PHP扩展程序是CURL(Client URL Library)。CURL允许你通过不同的协议，如HTTP, HTTPS, FTP, telnet, LDAP来通讯，其中的HTTPS对Web Services与服务器进行安全连接尤其有用。
 
-SOAP vs XML-RPC 优缺点:
+===SOAP vs XML-RPC 优缺点===
 
     * 强大的类型扩展 (SOAP)
     * 用户自定义字符集,如US-ASCII, UTF-8, UTF-16 (SOAP)
@@ -28,11 +29,11 @@ SOAP vs XML-RPC 优缺点:
     * DOMXML: 可选功能，对解析XML文档十分有帮助。需要预先安装好libxml库(版本>=2.4.2)，编译时使用 --with-dom=DIR 选项(缺省DIR为/usr)
       http://www.xmlsoft.org/downloads.html
       libxml 2.6.4 - sources - 2.52 MB
-    * XSLT: 可选功能，对转换XML资料为其他类型的文档有帮助。编译时使用 --enable-xslt --with-xslt-sablot 选项。必须预先安装Sablotron XSLT库(http://www.gingerall.com/)，(缺省DIR为/usr/lib或者/usr/local/lib)。
+    * XSLT: 可选功能，对转换XML资料为其他类型的文档有帮助。编译时使用 --enable-xslt --with-xslt-sablot 选项。必须预先安装Sablotron XSLT库(http://www.gingerall.com/)，(缺省DIR为/usr/lib 或者 /usr/local/lib)。
       Sablotron 1.0.1 - sources - 470 kB
     * CURL: 如前所述，若提供SSL支持则是必须安装的。编译时使用 --with-curl=DIR 选项。也同样需要预先安装CURL库(版本>=7.0.2-beta)。 [我的PHP已经安装了。CURL Information: libcurl/7.10.7 OpenSSL/0.9.7c zlib/1.1.4] 
-===Section 2. SOAP===
-      NuSOAP介绍:
+==Section 2. SOAP==
+===NuSOAP介绍===
       NuSOAP是一组开源的，用来通过HTTP收发SOAP消息的PHP类，由NuSphere Corporation (http://www.nusphere.com
       ) 开发。NuSOAP的一个优势是他不是一个扩展程序，而是纯粹用PHP代码写的，所以适用范围比较广。
       安装配置:
