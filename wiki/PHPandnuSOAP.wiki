@@ -6,8 +6,7 @@
  # 在PHP中使用SOAP。NuSOAP 工具包，NuSOAP的高级Web Service功能，如HTTP代理，SOAP over HTTPS，document style messaging。还将讨论如何解决一些PHP Web Services编程将会遇到的问题，如安全问题，语言到数据类型的映射
  # PHP中的XML-RPC。XML-RPC的特性，XML-RPC与SOAP的对比，然后使用Useful, Inc.实现来创建XML-RPC的客户端和服务器程序 
 
-下面是第一部分。
-
+'下面是第一部分'。
 
 Section 1. 概述
 PHP 中已经通过绑定了Expat parser内置了XML支持，额外的还可以使用一些扩展程序(extension)，如domxml(通过使用libxml库提供DOM, Xpath, Xlink支持)，xslt(为复杂的第三方XSLT库如Sablotron和libxslt提供的外包程序)。
@@ -23,7 +22,7 @@ SOAP vs XML-RPC 优缺点:
     * 易于使用 (XML-RPC)
     * 设计简单 (XML-RPC) 
 
-配置PHP:
+===配置PHP===
 
     * Apache: 为了让PHP作为Apache的模块方式运行，使用 --with-apxs选项编译，如 --with-apxs=/www/bin/apxs。[我现在使用的Apache2, 我编译的PHP使用的选项是--with-apxs2=/usr/sbin/apxs]
     * DOMXML: 可选功能，对解析XML文档十分有帮助。需要预先安装好libxml库(版本>=2.4.2)，编译时使用 --with-dom=DIR 选项(缺省DIR为/usr)
@@ -32,7 +31,7 @@ SOAP vs XML-RPC 优缺点:
     * XSLT: 可选功能，对转换XML资料为其他类型的文档有帮助。编译时使用 --enable-xslt --with-xslt-sablot 选项。必须预先安装Sablotron XSLT库(http://www.gingerall.com/)，(缺省DIR为/usr/lib或者/usr/local/lib)。
       Sablotron 1.0.1 - sources - 470 kB
     * CURL: 如前所述，若提供SSL支持则是必须安装的。编译时使用 --with-curl=DIR 选项。也同样需要预先安装CURL库(版本>=7.0.2-beta)。 [我的PHP已经安装了。CURL Information: libcurl/7.10.7 OpenSSL/0.9.7c zlib/1.1.4] 
-      Section 2. SOAP
+===Section 2. SOAP===
       NuSOAP介绍:
       NuSOAP是一组开源的，用来通过HTTP收发SOAP消息的PHP类，由NuSphere Corporation (http://www.nusphere.com
       ) 开发。NuSOAP的一个优势是他不是一个扩展程序，而是纯粹用PHP代码写的，所以适用范围比较广。
