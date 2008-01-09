@@ -46,6 +46,7 @@ PHP 中已经通过绑定了Expat parser内置了XML支持，额外的还可以�
       范例：
       下面是一个简单的SOAP client程序: soap_client.php 执行
 {{{
+      <?php
       //simple client
       require('nusoap.php');
 
@@ -79,6 +80,7 @@ PHP 中已经通过绑定了Expat parser内置了XML支持，额外的还可以�
 
       相应的server端程序: soap_server.php
 {{{
+      <?php
       //simple server
       require('nusoap.php');
 
@@ -146,6 +148,7 @@ PHP 中已经通过绑定了Expat parser内置了XML支持，额外的还可以�
 
             程序范例: soapval.php 执行
 {{{
+            <?php
             //soapval: general compound types samples
             include('nusoap.php');
 
