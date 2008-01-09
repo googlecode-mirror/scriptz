@@ -126,6 +126,7 @@ PHP 中已经通过绑定了Expat parser内置了XML支持，额外的还可以�
 }}}
 
       复杂数据类型的使用:
+
          1. 数组。以下是生成的SOAP的Body部分代码:
 {{{
             string1
