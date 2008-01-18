@@ -3,5 +3,4 @@
 = Perl is a language =
 
 == Links ==
- * [Perl PECL http://pleac.sourceforge.net/pleac_perl/] is a good start.
-
+ * [http://pleac.sourceforge.net/pleac_perl/ Perl PECL] is a good start.
