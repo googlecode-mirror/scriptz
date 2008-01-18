@@ -2,12 +2,6 @@
 
 = Perl is a language =
 
-Add your content here.
+== Links ==
+ * [Perl PECL http://pleac.sourceforge.net/pleac_perl/] is a good start.
 
-
-= Details =
-
-Add your content here.  Format your content with:
-  * Text in *bold* or _italic_
-  * Headings, paragraphs, and lists
-  * Automatic links to other wiki pages
