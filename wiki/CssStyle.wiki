@@ -2,4 +2,4 @@
 
 = Introduction =
 
- * [<hr> hack http://www.ihandu.com/blog/archives/184.html]
+ * [http://www.ihandu.com/blog/archives/184.html <hr> hack ]
