@@ -1,0 +1,5 @@
+#summary C Language with Linux Base.
+
+= Base Knowledge =
+
+ * [http://www.hungry.com/~alves/local-ip-in-C.html How to find a machine's local IP address from C]
