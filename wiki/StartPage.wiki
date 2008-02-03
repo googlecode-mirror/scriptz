@@ -7,4 +7,4 @@ View the full list of all wiki pages [http://code.google.com/p/scriptz/w/ here].
 == About Me ==
 I'm PHP and Linux Administrator in Chengdu, China. Ubuntu and Slackware are my favorite Linux distro. My laptop is Ubuntu and my office box is Slackware. 
 
-If you want make friend with me, contact me with zhuzhu@perlchina.org
+If you want make friend with me, contact me with ''zhuzhu@perlchina.org''
