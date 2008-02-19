@@ -1,0 +1,5 @@
+#summary backup script on linux/unix/windows.
+
+= Backup Scripts =
+== Easy backup ==
+ * [http://www.mikerubel.org/computers/rsync_snapshots/ Easy Automated Snapshot-Style Backups with Linux and Rsync]
