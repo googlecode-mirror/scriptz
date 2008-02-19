@@ -47,6 +47,8 @@
 
 ##### DEFINE FUNCTIONS
 
+PATH=/opt/local/bin:$PATH
+
 ### HELP FUNCTION
 
 help ()
