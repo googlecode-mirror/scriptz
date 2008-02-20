@@ -12,6 +12,13 @@ Add your content here.
 = 外部链接 =
  * [http://www.techonthenet.com/oracle/ Techonthenet]
 
+= 基本操作 =
+ 列出表名
+{{{
+SELECT table_name FROM user_tables;
+SELECT table_name FROM all_tables;
+}}}
+
 
 = Details =
 
