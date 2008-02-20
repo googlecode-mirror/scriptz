@@ -13,7 +13,7 @@ Add your content here.
  * [http://www.techonthenet.com/oracle/ Techonthenet]
 
 = 基本操作 =
- 列出表名
+ * 列出表名
 {{{
 SELECT table_name FROM user_tables;
 SELECT table_name FROM all_tables;
