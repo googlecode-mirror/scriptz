@@ -1,28 +1,18 @@
-#summary One-sentence summary of this page.
+#summary Oracle指南首页.
 #labels Phase-Implementation
 
-= Introduction =
+= Oracle指南 =
 
-Add your content here.
-
-= 数据表操作 =
+== 数据表操作 ==
  * [OracleAutoField 自增字段]
  * [OracleAlterTable 更新表结构]
 
-= 外部链接 =
+== 外部链接 ==
  * [http://www.techonthenet.com/oracle/ Techonthenet]
 
-= 基本操作 =
+== 基本操作 ==
  * 列出表名
 {{{
 SELECT table_name FROM user_tables;
 SELECT table_name FROM all_tables;
 }}}
-
-
-= Details =
-
-Add your content here.  Format your content with:
-  * Text in *bold* or _italic_
-  * Headings, paragraphs, and lists
-  * Automatic links to other wiki pages
