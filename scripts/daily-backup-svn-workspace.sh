@@ -12,3 +12,4 @@ BACKUP_SVN_WORK_DIR='/var/svn_work_space_daily_backup/'
 
 # we use very simple rsync
 rsync -a --delete $SVN_WORK_DIR $BACKUP_SVN_WORK_DIR
+
