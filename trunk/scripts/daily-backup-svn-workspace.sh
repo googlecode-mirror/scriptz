@@ -13,3 +13,12 @@ BACKUP_SVN_WORK_DIR='/var/svn_work_space_daily_backup/'
 # we use very simple rsync
 rsync -a --delete $SVN_WORK_DIR $BACKUP_SVN_WORK_DIR
 
+# backup svn and trac daily
+#
+SVN_DIR=/var/svn_home
+TRAC_DIR=/var/trac_home
+BACKUP_SVN_AND_TRAC_DIR='/develop_dir/backup_daily_svn_and_trac'
+for i in $SVN_DIR $TRAC_DIR
+do
+	rsync -a --delete $i $BACKUP_SVN_AND_TRAC_DIR
+done
