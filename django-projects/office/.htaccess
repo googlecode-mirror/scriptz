@@ -1,0 +1,5 @@
+AddHandler fastcgi-script .fcgi
+RewriteEngine On
+RewriteBase /~fred/django-projects/office/
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule ^(.*)$ mysite.fcgi/$1/? [QSA,L]
