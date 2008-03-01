@@ -1,0 +1,7 @@
+#summary One-sentence summary of this page.
+
+= FreeBSD =
+== Ports make from a site. ==
+{{{
+make MASTER_SITE_OVERRIDE=ftp://ftp.freebsdchina.org/pub/FreeBSD/ports/distfiles/
+}}}
