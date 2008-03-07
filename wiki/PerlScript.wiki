@@ -4,3 +4,9 @@
 
 == Links ==
  * [http://pleac.sourceforge.net/pleac_perl/ Perl PECL] is a good start.
+
+== CPAN command ==
+install CPAN modules in command line.
+{{{
+sudo perl -MCPAN -e'CPAN::Shell->install("Proc::ProcessTable")'
+}}}
