@@ -1,4 +1,4 @@
-#summary One-sentence summary of this page.
+#summary Bookmarks List.
 
 = Bookmarks =
 == Perl ==
@@ -8,3 +8,6 @@
 == Apache Tuning ==
  * http://perl.apache.org/docs/1.0/guide/performance.html
  * http://www.unix.org.ua/orelly/perl/sysadmin/ch04_03.htm (perl process control)
+
+== Bash Script ==
+ * http://www.hypexr.org/bash_tutorial.php
