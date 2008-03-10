@@ -11,3 +11,4 @@
 
 == Bash Script ==
  * http://www.hypexr.org/bash_tutorial.php
+ * [http://www.faqs.org/docs/abs/HTML/colorizing.html bash script color]
