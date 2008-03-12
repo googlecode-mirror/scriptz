@@ -13,7 +13,7 @@ unzip instantclient-basic-linux32-10.2.0.1-20050713.zip
 unzip instantclient-sdk-linux32-10.2.0.1-20050713.zip
 echo /opt/oracle/instantclient >> /etc/ld.so.conf
 ldconfig
-]}}
+}}}
 The previous two lines are supposed to create symlinks named libclntsh.so and libocci.so which we will need later. In my case these symlinks were not created by ldconfig, so I created them manually.
 {{{
 ln -s libclntsh.so.10.1 libclntsh.so
