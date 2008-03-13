@@ -23,7 +23,7 @@ In the next step we will download the oci8 module with pear. Pear is in the php-
 {{{
 apt-get install php-pear
 }}}
-"Normally" we should be able to just use pear install oci8 now, but apparently pear is not able to figure out where the instantclient libraries are. So we will just download the oci8 module and build it on our own.
+"Normally" we should be able to just use pear install oci8 now, but apparently pear is not able to figure out where the instantclient libraries are. So we will just download the oci8 module and build it on our own. or download oci8 [http://pecl.php.net/package/oci8 here].
 {{{
 mkdir -p /usr/local/src
 cd /usr/local/src
