@@ -9,16 +9,16 @@ use DBI;
 use Sys::Syslog;
 
 # apache pid file location
-my $serverIp = "192.168.1.122";
-my $pidfile = "/var/run/httpd/httpd.pid";
-my $ctlApache = "/usr/sbin/apachectl";
+my $serverIp = "125.65.113.14";   # <------------------- need set
+my $pidfile = "/usr/local/apache2/logs/httpd.pid"; # <-- need set
+my $ctlApache = "/usr/local/apache2/bin/apachectl"; # <- need set
 my $isRunApache = 1;
 my $waitApacheStartTime = 60;
-my $waitLoopTime = 15;
-my $apacheUid = 80;
+my $waitLoopTime = 30;
+my $apacheUid = 99;               # <------------------- need set
 my $maxCpuUse = 15;
-my $maxRuntime = 18;
-my $dbhost = 'td3';
+my $maxRuntime = 1800;
+my $dbhost = '192.168.1.48';      # <------------------- need set
 my $dbuser = 'monitor';
 my $dbpassword = 'monitor_db';
 my $dbname = 'monitor';
@@ -97,10 +97,11 @@ sub logRecord {
 	my ($type, $serverIp, $status) = @_;
 	my $dbh = DBI->connect("dbi:mysql:$dbname:$dbhost",$dbuser,$dbpassword); 
 	if ($dbh){
+		my $runTime = checkDateTime();
 	    if ($type eq "server")	{
-			$dbh->do("INSERT INTO `web_server_status` (server_ip, status, created) VALUES ($serverIp, $status, &checkDateTime())");
+			$dbh->do(qq{INSERT INTO `web_server_status` (server_ip, status, created) VALUES ('$serverIp', '$status', 'checkDateTime()')});
 		} elsif ($type eq 'proc'){
-			$dbh->do("INSERT INTO `web_proc_status` (server_ip, killedNum, created) VALUES ($serverIp, $status, &checkDateTime())");
+			$dbh->do(qq{INSERT INTO `web_proc_status` (server_ip, killed_num, created) VALUES ('$serverIp', '$status', '$runTime')});
 		} else {
 			exit 0;
 		}
@@ -118,6 +119,9 @@ sub checkDateTime {
 	$y+=1900;
 	if ($m<10) { $m = "0".$m; }
 	if ($d<10) { $d = "0".$d; }
+	if ($s<10) { $s = "0".$s; }
+	if ($mm<10) { $mm = "0".$mm; }
+	if ($h<10) { $h = "0".$h; }
 	my $mysqlDateTime = "$y-$m-$d $h:$mm:$s";
 	return $mysqlDateTime;
 }
