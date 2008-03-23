@@ -3,7 +3,7 @@
 = Nginx 负载均衡服务器 =
 ==一、) 安装Nginx==
 ===1.) 安装===
-Nginx发音为^engine x^，是由俄罗斯人Igor Sysoev建立的项目,基于BSD许可。据说他当初是F5的成员之一，英文主页：http://nginx.net。俄罗斯的一些大网站已经使用它超过两年多了，一直表现不凡。
+Nginx发音为*engine x*，是由俄罗斯人Igor Sysoev建立的项目,基于BSD许可。据说他当初是F5的成员之一，英文主页：http://nginx.net 俄罗斯的一些大网站已经使用它超过两年多了，一直表现不凡。
 Nginx的编译参数如下：
 {{{
 [root@localhost]#./configure --prefix=/usr/local/server/nginx --with-openssl=/usr/include \
