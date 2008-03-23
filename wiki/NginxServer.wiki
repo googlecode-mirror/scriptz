@@ -146,10 +146,10 @@ http {
 
   备注：conf/htpasswd 文件的内容用 apache 提供的 htpasswd 工具来产生即可，内容大致如下：
 
-  #帐号 yejr,密码 123456 yejr:qLYyJ0ZRLAId2
+  帐号 yejr,密码 123456 yejr:qLYyJ0ZRLAId2
 
 ===3.) 查看 Nginx 运行状态===
-  输入地址 http://192.168.8.1/NginxStatus/，输入验证帐号密码，即可看到类似如下内容：
+  输入地址 http://192.168.8.1/NginxStatus/ ，输入验证帐号密码，即可看到类似如下内容：
 {{{
 Active connections: 291
 server accepts handled requests
