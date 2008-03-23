@@ -1,4 +1,5 @@
-#summary One-sentence summary of this page.
+#summary Nginx 负载均衡服务器
+#labels Phase-Implementation
 
 = Nginx 负载均衡服务器 =
 ==一、) 安装Nginx==
@@ -164,4 +165,4 @@ reading -- nginx 读取到客户端的Header信息数
 
 writing -- nginx 返回给客户端的Header信息数
 
-waiting -- 开启 keep-alive 的情况下，这个值等于 active - (reading + writing)，意思就是Nginx说已经处理完正在等候下一次请求指令的驻留连接 
+waiting -- 开启 keep-alive 的情况下，这个值等于 active - (reading + writing)，意思就是Nginx说已经处理完正在等候下一次请求指令的驻留连接 。
