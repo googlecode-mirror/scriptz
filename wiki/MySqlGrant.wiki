@@ -95,6 +95,7 @@ GRANT ALL ON samp_db.* TO rex@192.168.128.0/17 IDENTIFIED BY "ruby"
 {{{
 GRANT ALL ON *.* TO ethel@localhost IDENTIFIED BY "coffee" WITH GRANT OPTION
 }}}
+}}}
 　　ON子句中的*.*意味着“所有数据库、所有表”。从安全考虑，我们指定ethel只能从本地连接。限制一个超级用户可以连接的主机通常是明智的，因为它限制了试图破解口令的主机。
 　　有些权限（FILE、PROCESS、RELOAD和SHUTDOWN）是管理权限并且只能用"ON *.*"全局权限指定符授权。如果你愿意，你可以授权这些权限，而不授权数据库权限。例如，下列语句设置一个flush用户，他只能发出flush语句。这可能在你需要执行诸如清空日志等的管理脚本中会有用：
 {{{
