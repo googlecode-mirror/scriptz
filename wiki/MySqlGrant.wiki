@@ -27,6 +27,7 @@ mysql>GRANT ALL ON picture.* TO test IDENTIFIED BY "test";
 GRANT privileges (columns) ON what TO user IDENTIFIED BY "password" WITH GRANT OPTION　
 }}}
 要使用该语句，你需要填写下列部分：
+{{{
 　　privileges 授予用户的权限，下表列出可用于GRANT语句的权限指定符：
 　权限指定符 权限允许的操作
 　　Alter 　　　　　　修改表和索引
@@ -56,7 +57,7 @@ GRANT privileges (columns) ON what TO user IDENTIFIED BY "password" WITH GRANT O
 　　password 　　赋予用户的口令，它是可选的。如果你对新用户没有指定IDENTIFIED BY子句，该用户不赋给口令（不安全）。对现有用户，任何你指定的口令将代替老口令。如果你不指定口令，老口令保持不变，当你用IDENTIFIED BY时，口令字符串用改用口令的字面含义，GRANT将为你编码口令，不要你用SET PASSWORD 那样使用password()函数。
 
 　　WITH GRANT OPTION子句是可选的。如果你包含它，用户可以授予权限通过GRANT语句授权给其它用户。你可以用该子句给与其它用户授权的能力。
-
+}}}
 　　注意：用户名、口令、数据库和表名在授权表记录中是大小写敏感的，主机名和列名不是。
 
 　　一般地，你可以通过询问几个简单的问题来识别GRANT语句的种类：
