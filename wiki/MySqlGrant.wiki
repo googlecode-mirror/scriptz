@@ -78,9 +78,9 @@ GRANT ALL ON samp_db.* TO fred@res.mars.com IDENTIFIED BY "quartz"
 GRANT ALL ON samp_db.* TO max@% IDENTIFIED BY "diamond"
 }}}
 　　“%”字符起通配符作用，与LIKE模式匹配的含义相同。在上述语句中，它意味着“任何主机”。所以max和max@%等价。这是建立用户最简单的方法，但也是最不安全的。
-　　其中，你可以允许一个用户从一个受限的主机集合访问。例如，要允许mary从snake.net域的任何主机连接，用一个%.snake.net主机指定符：
+　　其中，你可以允许一个用户从一个受限的主机集合访问。例如，要允许mary从snake.net域的任何主机连接，用一个%.snake.net主机指定符:
 {{{
-GRANT ALL ON samp_db.* TO mary@.snake.net IDENTIFIED BY "quartz";
+GRANT ALL ON samp_db.* TO mary@.snake.net IDENTIFIED BY "quartz"
 }}}　　
 　　如果你喜欢，用户标识符的主机部分可以用IP地址而不是一个主机名来给定。你可以指定一个IP地址或一个包含模式字符的地址，而且，从MySQL 3.23，你还可以指定具有指出用于网络号的位数的网络掩码的IP号：
 {{{
