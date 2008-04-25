@@ -1,0 +1,14 @@
+LoadModule deflate_module       modules/mod_deflate.so
+
+<Location />
+        <IfModule mod_deflate.c>
+                AddOutputFilterByType DEFLATE text/html text/plain text/css text
+/xml application/x-javascript
+                Header append Vary User-Agent
+        </IfModule>
+</Location>
+<IfModule mod_deflate.c>
+        BrowserMatch ^Mozilla/4 gzip-only-text/html
+        BrowserMatch ^Mozilla/4\.0[678] no-gzip
+        BrowserMatch \bMSI[E] !no-gzip !gzip-only-text/html
+</IfModule>
