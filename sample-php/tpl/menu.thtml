@@ -1,0 +1,24 @@
+
+<p id="hello"><?php echo $lang['hello']?>: <?php echo $_SESSION['user']['nickname'] ?></p>
+
+<ul id="menu_ul">
+	<li<?php if(!isset($_GET['module'])) echo ' class="select"' ?>><a href="<?php echo SITE_URL ?>"><?php echo $lang['homepage'] ?></a></li>
+	<?php foreach ($menuPermissions as $menuPermission): ?>
+		<?php echo _displayMenu($menuPermission,$lang) ?>
+	<?php endforeach; ?>
+	
+	<li class="hr_line <?php if($_GET['module']=='change_password') echo 'select' ?>"><a href="<?php echo SITE_URL ?>/?module=change_password"><?php echo $lang['change_password'] ?></a></li>
+	<li><a href="<?php echo SITE_URL ?>/?module=logout"><?php echo $lang['logout'] ?></a></li>
+</ul>
+
+<?php
+function _displayMenu($permission=null,$lang=null) {
+	if (in_array($permission, unserialize($_SESSION['user']['permissions'])) && $permission!='logout' && 
+		$permission !='change_password' && !preg_match('/(^view_)|(^edit_)|(^delete_)|(^download_)/', $permission)) {
+		$is_select = ($_GET['module']==$permission)?'select':'no_select';
+		$menuList =  "<li class=\"".$is_select."\"><a href=\"".SITE_URL."/?module=".$permission."\">".$lang[$permission]."</a></li>\n";
+		return $menuList;
+	}
+}
+ 
+?>

@@ -1,0 +1,13 @@
+<div>
+<form id="dummy" method="post" action="">
+	<fieldset>
+	<legend style="font-size:25px"><?php echo $lang['site_type_manage']?></legend>
+	<p>
+		<label><?php
+			if($_GET[type] == 1) echo $lang['site_type_name']; elseif($_GET[type] == 2) echo $lang['site_type_degree']; else echo $lang['site_type_area'] ?></label><br />
+		<input type="text"  class="title" name="attribute[name]" value="<?php echo $attribute['name'] ?>" /><input type="hidden"  class="title" name="type" value="<?=$_GET[type]?>" />
+	</p>
+	<p><input type="submit" value="<?php echo $lang['submit']?>"></p>
+	</fieldset>
+</form>
+</div>

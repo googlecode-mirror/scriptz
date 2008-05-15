@@ -1,0 +1,28 @@
+<div>
+<table style="width: 100%">
+	<thead>
+		<tr>
+			<th><?php echo $lang['site_name'] ?></th>
+			<th><?php echo $lang['site_url'] ?></th>
+			<th><?php echo $lang['proof'] ?></th>
+		</tr>
+	</thead>
+	
+	<tbody>
+		<?php foreach ($schedules  as $schedule): ?>
+		<tr>
+			<td><a href="<?php echo SITE_URL ?>/?module=proof_schedule&action=view&id=<?php echo $schedule['id'] ?>"><?php echo $schedule['name'] ?></a></td>
+			<td><a href="<?php echo $schedule['url'] ?>"><?php echo $lang['visit'] ?></a></td>
+			<td><a href="<?php echo SITE_URL ?>/?module=proof_schedule&action=edit&id=<?php echo $schedule['id'] ?>"><?php echo $lang['proof'] ?></a></td>
+		</tr>
+		<?php endforeach; ?>
+	
+	</tbody>
+</table>
+
+</div>	
+
+<div>
+<?php echo $totalRows.' / '.$totalPages ?><br />
+<?php echo $pagers ?>
+</div>	

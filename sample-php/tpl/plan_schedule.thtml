@@ -1,0 +1,61 @@
+<div>
+<table style="width: 100%">
+	<thead>
+		<tr>
+			<th><?php echo $lang['site_name'] ?></th>
+			<th><?php echo $lang['site_url'] ?></th>
+			<th><?php echo $lang['site_type_name'] ?></th>
+			<th><?php echo $lang['site_type_degree'] ?></th>
+			<th><?php echo $lang['site_rate'] ?></th>
+			<th><?php echo $lang['site_quantity'] ?></th>
+			<th><?php echo $lang['parse_user'] ?></th>
+			<th><?php echo $lang['post_user'] ?></th>
+			<th><?php echo $lang['post_time'] ?></th>
+			<th><?php echo $lang['start_parse_time'] ?></th>
+			<th><?php echo $lang['finish_parse_time'] ?></th>
+			<th><?php echo $lang['status'] ?></th>
+			<th><?php echo $lang['code'] ?></th>
+			<th><?php echo $lang['plan'] ?></th>
+		</tr>
+	</thead>
+	
+	<tbody>
+		
+		<?php foreach($schedules as $schedule): ?>
+		<tr class="<?php echo (((substr($schedule['defer_time'],0,10)!='0000-00-00')?substr($schedule['defer_time'],0,10):substr($schedule['end_time'],0,10)) 
+				< date("Y-m-d")&&$schedule['status']==5)?'status_7':'status_'.$schedule['status'] ?>">
+			<td><a href="<?php echo SITE_URL ?>/?module=plan_schedule&action=view&id=<?php echo $schedule['id']?>"><?php echo $schedule['name'] ?></a></td>
+			<td><a href="<?php echo $schedule['url'] ?>" target="_blank"><?php echo $lang['visit'] ?></a></td>	
+			<td><?php echo $schedule['type_name'] ?></td>	
+			<td><?php echo $schedule['degree_name'] ?></td>	
+			<td><?php echo $schedule['rate'] ?></td>	
+			<td><?php echo $schedule['quantity'] ?></td>	
+			<td><?php echo $schedule['parse_user'] ?>&nbsp;</td>	
+			<td><?php echo $schedule['post_user'] ?></td>
+			<td><?php echo substr($schedule['created'],0,10) ?></td>	
+			<td><?php if(substr($schedule['start_time'],0,10)!='0000-00-00') echo substr($schedule['start_time'],0,10) ?>&nbsp;</td>
+			<td><?php if(substr($schedule['end_time'],0,10)!='0000-00-00') echo substr($schedule['end_time'],0,10) ?>&nbsp;</td>
+			<td><?php echo (((substr($schedule['defer_time'],0,10)!='0000-00-00')?substr($schedule['defer_time'],0,10):substr($schedule['end_time'],0,10)) 
+				< date("Y-m-d")&&$schedule['status']==5)?$lang['status_7']:$lang['status_'.$schedule['status']] ?></td>
+			<td>
+				<?php if(!empty($schedule['code'])): ?>
+					<a href="<?php SITE_URL ?>/?module=download_code&id=<?php echo $schedule['code_id']?>" target="blank"><?php echo $lang['download'] ?></a>
+				<?php endif; ?>
+			</td>
+			<td>
+				<a href="<?php echo SITE_URL ?>/?module=plan_schedule&action=edit&id=<?php echo $schedule['id']?>&from=<?php echo $_SERVER['REQUEST_URI']?>">
+						<?php echo $lang['plan'] ?>
+				</a>
+			</td>
+		</tr>
+	
+		<?php endforeach; ?>
+	</tbody>
+
+</table>
+
+<div>
+<?php echo $totalRows.' / '.$totalPages ?><br />
+<?php echo $pagers ?>
+</div>
+</div>

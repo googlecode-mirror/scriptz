@@ -1,0 +1,86 @@
+<div>
+<form id="dummy" method="post" action="">
+	<fieldset>
+	
+	<legend style="font-size:25px"><?php echo $lang['edit_schedule']?></legend>
+	<?php if(isset($error)): ?>
+	<p class="error input_error"><?php echo $error ?></p>
+	<?php endif; ?>
+	<p>
+		<label><?php echo $lang['site_name'] ?></label><br />
+		<input type="text"  class="title" name="site[name]" value="<?php echo $site['name'] ?>" />
+	</p>
+	
+	<p>
+		<label><?php echo $lang['site_url'] ?></label><br />
+		<input type="text"  class="title" name="site[url]"  value="<?php echo $site['url'] ?>" />
+	</p>
+	
+	<p>
+		<label><?php echo $lang['site_rate'] ?></label><br />
+		<input type="text"  class="title" name="site[rate]"  value="<?php echo $site['rate'] ?>" />
+	</p>
+	
+	<p>
+		<label><?php echo $lang['site_quantity'] ?></label><br />
+		<input type="text"  class="title" name="site[quantity]"  value="<?php echo $site['quantity'] ?>" />
+	</p>	
+	
+	<p>
+		<label><?php echo $lang['site_type_name'] ?></label><br />
+		 <select id="dummy4" name="site[type_id]">
+		 	<?php foreach($types as $type): ?>
+		 		<?php if($type['type']==1) :?>
+		 		<option value="<?php echo $type['id'] ?>"<?php if($site['type_id']==$type['id'])echo ' SELECTED' ?>><?php echo $type['name'] ?></option>
+		 		<?php endif; ?>
+		 	<?php endforeach; ?>
+		 </select>
+	</p>	
+	
+	<p>
+		<label><?php echo $lang['site_type_degree'] ?></label><br />
+		 <select id="dummy4" name="site[degree_id]">
+		 	<?php foreach($types as $type): ?>
+		 		<?php if($type['type']==2) :?>
+		 		<option value="<?php echo $type['id'] ?>"<?php if($site['degree_id']==$type['id'])echo ' SELECTED' ?>><?php echo $type['name'] ?></option>
+		 		<?php endif; ?>
+		 	<?php endforeach; ?>
+		 </select>
+	</p>	
+	
+	<p>
+		<label><?php echo $lang['site_type_area'] ?></label><br />
+		 <select id="dummy4" name="site[area_id]">
+		 	<?php foreach($types as $type): ?>
+		 		<?php if($type['type']==3) :?>
+		 		<option value="<?php echo $type['id'] ?>"<?php if($site['area_id']==$type['id'])echo ' SELECTED' ?>><?php echo $type['name'] ?></option>
+		 		<?php endif; ?>
+		 	<?php endforeach; ?>
+		 </select>
+	</p>	
+	
+	<p>
+		<label><?php echo $lang['site_desc'] ?></label><br />
+		<textarea type="text"  class="title" name="site[desc]"  /><?php echo $site['desc'] ?></textarea>
+	</p>	
+
+	<p>
+		<label><?php echo $lang['site_language'] ?></label><br />
+		<input type="checkbox" value="cn" name="site[language][]"<?php if(is_array(unserialize($site['lang'])) &&in_array('cn',unserialize($site['lang'])))echo CHECKED ?>><?php echo $lang['simple_chinese'] ?>&nbsp;&nbsp;&nbsp;
+		<input value="tw" type="checkbox" name="site[language][]"<?php if(is_array(unserialize($site['lang'])) &&in_array('tw',unserialize($site['lang'])))echo CHECKED ?>> <?php echo $lang['translate_chinese'] ?>&nbsp;&nbsp;&nbsp;
+		<input value="en" type="checkbox" name="site[language][]"<?php if(is_array(unserialize($site['lang'])) &&in_array('en',unserialize($site['lang'])))echo CHECKED ?>> <?php echo $lang['english'] ?>
+	</p>	
+	
+	<p>
+		<label><?php echo $lang['update_reason'] ?></label><br />
+		<select id="dummy4" name="site[update_reason]">
+		 		<option value="1"><?php echo $lang['site_update'] ?></option>
+		 		<option value="2"><?php echo $lang['url_false'] ?></option>
+		 </select>
+	</p>	
+	
+	
+	<p><input type="submit" value="<?php echo $lang['submit']?>"></p>
+	</fieldset>
+</form>
+</div>
