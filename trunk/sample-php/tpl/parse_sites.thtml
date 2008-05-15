@@ -1,0 +1,39 @@
+<div>
+<table style="width: 100%">
+	<thead>
+		<tr>
+			<th><?php echo $lang['site_name'] ?></th>
+			<th><?php echo $lang['post_user'] ?></th>
+			<th><?php echo $lang['post_time'] ?></th>
+			<th><?php echo $lang['start_parse_time'] ?></th>
+			<th><?php echo $lang['finish_parse_time'] ?></th>
+			<th><?php echo $lang['status'] ?></th>
+			<th><?php echo $lang['modify'] ?></th>
+		</tr>
+	</thead>
+
+	<tbody>
+		<?php foreach( $sites as $site): ?>
+			<tr>
+				<td><a href="<?php echo SITE_URL ?>/?module=parse_sites&action=view&id=<?php echo $site['id']?>"><?php echo $site['name'] ?></a></td>
+				<td><?php echo $site['post_user'] ?></td>
+				<td><?php echo $site['created'] ?></td>
+				<td><?php echo substr($site['start_time'],0,10) ?></td>
+				<td><?php echo substr($site['end_time'],0,10) ?></td>
+				<td><?php echo (((substr($site['defer_time'],0,10)!='0000-00-00')?substr($site['defer_time'],0,10):substr($site['end_time'],0,10)) 
+				< date("Y-m-d")&&$site['status']==5)?$lang['status_7']:$lang['status_'.$site['status']] ?></td>
+				<td><a href="<?php echo SITE_URL ?>/?module=parse_sites&action=edit&id=<?php echo $site['id'] ?>&from=<?php echo urlencode($_SERVER['REQUEST_URI']) ?>"><?php echo $lang['edit'] ?></a></td>
+				
+			</tr>
+		
+		<?php endforeach; ?>
+	</tbody>
+
+</table>
+
+<div>
+<?php echo $totalRows.' / '.$totalPages ?><br />
+<?php echo $pagers ?>
+</div>
+
+</div>

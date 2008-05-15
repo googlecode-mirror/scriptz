@@ -1,0 +1,36 @@
+<div>
+<table style="width: 100%">
+	<thead>
+		<tr>
+			<th><?php echo $lang['site_name'] ?></th>
+			<th><?php echo $lang['site_desc'] ?></th>
+			<th><?php echo $lang['site_url'] ?></th>
+			<th><?php echo $lang['site_type_name'] ?></th>
+			<th><?php echo $lang['site_type_degree'] ?></th>
+			<th><?php echo $lang['site_rate'] ?></th>
+			<th><?php echo $lang['site_quantity'] ?></th>
+		</tr>
+	</thead>
+	
+	<tbody>
+		<?php foreach ($schedules  as $schedule): ?>
+		<tr>
+			<td><?php echo $schedule['name'] ?></td>
+			<td><?php echo $schedule['desc'] ?></td>
+			<td><a href="<?php echo $schedule['url'] ?>"><?php echo $lang['visit'] ?></a></td>
+			<td><?php echo $schedule['type_name'] ?></td>
+			<td><?php echo $schedule['degree_name'] ?></td>
+			<td><?php echo $schedule['rate'] ?></td>
+			<td><?php echo $schedule['quantity'] ?></td>
+		</tr>
+		<?php endforeach; ?>
+	
+	</tbody>
+</table>
+
+</div>	
+
+<div>
+<?php echo $totalRows.' / '.$totalPages ?><br />
+<?php echo $pagers ?>
+</div>	

@@ -1,0 +1,31 @@
+<div class="column span-2 colborder">
+	<ul class="right_menu">
+		<li <?php if($_GET['type']==1||!$_GET['type']) echo 'class="select"'  ?>><a href="<?php echo SITE_URL ?>/?module=site_type_manage&type=1"><?php echo $lang['site_type_name'] ?></a></li>
+		<li <?php if($_GET['type']==2) echo 'class="select"'  ?>><a href="<?php echo SITE_URL ?>/?module=site_type_manage&type=2"><?php echo $lang['site_type_degree'] ?></a></li>
+		<li <?php if($_GET['type']==3) echo 'class="select"'  ?>><a href="<?php echo SITE_URL ?>/?module=site_type_manage&type=3"><?php echo $lang['site_type_area'] ?></a></li>
+	</ul>
+</div>
+
+<div class="column span-16 last">
+<table  style="width: 100%">
+	<tr>
+		<th>ID</th>
+		<th><?php
+			if($_GET[type] == 1||!$_GET['type']) echo $lang['site_type_name']; elseif($_GET[type] == 2) echo $lang['site_type_degree']; else echo $lang['site_type_area'] ?></th>
+		<th class="add_function"><a href="<?php echo SITE_URL ?>/?module=site_type_manage&action=add&type=<?=$_GET[type]?>">
+		<?php echo $lang['site_type_add'] ?></a></th>
+	</tr>
+	
+	<?php foreach($attributes as $attribute) :?>
+	<tr>
+		<td><?php echo $attribute['id'] ?></td>
+		<td><?php echo $attribute['name'] ?></td>
+		<td>
+			<a href="<?php echo SITE_URL ?>/?module=site_type_manage&action=edit&type=<?=$_GET[type]?>&id=<?php echo $attribute['id'] ?>"><?php echo $lang['edit'] ?></a> / <a href="<?php echo SITE_URL ?>/?module=site_type_manage&action=del&type=<?=$_GET[type]?>&id=<?php echo $attribute['id'] ?>" onclick="javascript:return confirm('<?php echo $lang['confirm_delete']?>?')"><?php echo $lang['delete'] ?></a>
+		</td>
+	</tr>
+	<?php endforeach; ?>
+	
+</table>
+
+</div>

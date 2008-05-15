@@ -1,0 +1,54 @@
+
+<div>
+<table style="width: 100%">
+	<tr>
+		<th>ID</th>
+		<th><?php echo $lang['group_name'] ?></th>
+		<th><?php echo $lang['group_access'] ?></th>
+		<th><?php echo $lang['group_users'] ?></th>
+		<th class="add_function"><a href="<?php echo SITE_URL ?>/?module=groups_manage&action=add">
+		<?php echo $lang['add_group'] ?></a></th>
+	</tr>
+	
+	<?php foreach($groups as $group) :?>
+	<tr>
+		<td><?php echo $group['id'] ?></td>
+		<td><?php echo $group['name'] ?></td>
+		<td><?php echo listPermission($group['permissions'], $lang) ?></td>
+		<td><?php echo listUser($group['id'],$conf);  ?></td>
+		<td>
+			<a href="<?php echo SITE_URL ?>/?module=groups_manage&action=edit&id=<?php echo $group['id'] ?>"><?php echo $lang['edit'] ?></a>
+			 / <a href="<?php echo SITE_URL ?>/?module=groups_manage&action=del&id=<?php echo $group['id'] ?>" onclick="javascript:return confirm('<?php echo $lang['confirm_delete']?>?')"><?php echo $lang['delete'] ?></a>
+		</td>
+	</tr>
+	<?php endforeach; ?>
+	
+</table>
+
+</div>
+
+<?php
+function listPermission($permissionStr=null, $lang = null) {
+	$permissionList = null;
+	$permissions = unserialize($permissionStr);
+	foreach ($permissions as $permission) {
+		$permissionList .= $lang[$permission].', ';
+	}
+	return $permissionList;
+}
+function listUser($groupId=null,$conf=null) {
+	error_reporting(E_ALL);
+	$db = NewADOConnection('mysql');
+	$db->Connect($conf['db_host'],$conf['db_user'],$conf['db_passwd'],$conf['db_name']);
+	$sql = "SELECT username FROM users WHERE group_id=$groupId";
+	$rs = $db->GetCol($sql);
+	$db->debug = true;
+	if (is_array($rs)){
+		$userList = implode(',', $rs);
+	}else {
+		$userList = $rs;
+	}
+	$db->Close();
+	return $userList;
+}
+?>

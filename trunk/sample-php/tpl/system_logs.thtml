@@ -1,0 +1,28 @@
+<div>
+<table style="width: 100%">
+	<tr>
+		<th>ID</th>
+		<th><?php echo $lang['username'] ?></th>
+		<th><?php echo $lang['time'] ?></th>
+		<th><?php echo $lang['log_desc'] ?></th>		
+	</tr>
+	
+	<?php if(is_array($logs)):?>
+	<?php foreach($logs as $log) :?>
+	<tr>
+		<td><?php echo $log['id'] ?></td>
+		<td><?php echo $log['user_name'] ?></td>
+		<td><?php echo $log['time'] ?></td>
+		<td><?php echo $log['desc'] ?></td>
+	</tr>
+	<?php endforeach; ?>
+	<?php endif; ?>
+	
+</table>
+
+<div>
+	<?php echo $totalRows.'/'.$totalPages?> <br />
+	<?php echo $pagers ?>
+</div>
+
+</div>

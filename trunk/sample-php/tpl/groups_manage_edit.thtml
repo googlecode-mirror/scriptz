@@ -1,0 +1,26 @@
+<div>
+<form id="dummy" method="post" action="">
+	<fieldset>
+	<legend style="font-size:25px"><?php echo $lang['add_group']?></legend>
+	<p>
+		<label><?php echo $lang['group_name'] ?></label><br />
+		<input type="text"  class="title" name="group[name]" value="<?php echo $group['name'] ?>" />
+	</p>
+	
+	<p>
+		<label><?php echo $lang['group_access'] ?></label><br />
+		<?php foreach($permissions as $permission):?>
+			<input type="checkbox" name="group[permissions][]" value="<?php echo $permission ?>" <?php if (in_array($permission,unserialize($group['permissions']))) echo 'CHECKED' ?>><?php echo $lang[$permission] ?>
+		<?php endforeach; ?>
+	</p>
+		
+	<p>
+		<label><?php echo $lang['group_desc'] ?></label><br />
+		<textarea class="title" name="group[desc]"><?php echo $group['desc'] ?>
+		</textarea>
+	</p>
+	
+	<p><input type="submit" value="<?php echo $lang['submit']?>"></p>
+	</fieldset>
+</form>
+</div>

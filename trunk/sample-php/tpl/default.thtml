@@ -1,0 +1,49 @@
+<div>
+<style>
+dd {font-size: 18px;}
+dt {margin-bottom: 20px;font-size: 25px;font-weight: bold; border-bottom: 1px solid #ececec; padding:3px;}
+span.num {color: red;}
+</style>
+<dl>
+	<dt style=""><?php echo $pageTitle ?></dt>
+<?php switch($_SESSION['user']['group_id']): 
+		case 1: // 系统管理员 ?>
+	<?php case 2: // 董事长 ?>
+	<?php case 10: // 维护主管 ?>
+	<?php case 7: // 技术总监 ?>
+
+	<dd><?php echo $lang['now_have'] ?><span class="num"><?php echo $sites['total'] ?></span><?php echo $lang['sites_num']?> <a href="<?php echo SITE_URL ?>/?module=watch_all_schedule"><?php echo $lang['check_into_list']?></a></dd>
+	<dd><?php echo $lang['there_is']?><span class="num"><?php echo $sites['past'] ?></span><?php echo $lang['sites_num']?>解析过期 <a href="<?php echo SITE_URL ?>/?module=watch_all_schedule&type=past"><?php echo $lang['check_into_list']?></a></dd>
+	<?php if ($_SESSION['user']['group_id']!=7): ?>
+	<dd><?php echo $lang['there_is']?><span class="num"><?php echo $sites['wait_examine'] ?></span><?php echo $lang['sites_num']?>等待审核 <a href="<?php echo SITE_URL ?>/?module=watch_all_schedule&type=wait_examine"><?php echo $lang['check_into_list']?></a></dd>
+	<?php endif; ?>
+	<dd><?php echo $lang['there_is']?><span class="num"><?php echo $sites['wait_parse'] ?></span><?php echo $lang['sites_num']?>等待解析 <a href="<?php echo SITE_URL ?>/?module=watch_all_schedule&type=wait_parse"><?php echo $lang['check_into_list']?></a></dd>
+	<dd><?php echo $lang['there_is']?><span class="num"><?php echo $sites['wait_parse'] ?></span><?php echo $lang['sites_num']?>正在解析 <a href="<?php echo SITE_URL ?>/?module=watch_all_schedule&type=in_parse"><?php echo $lang['check_into_list']?></a></dd>
+	<dd><?php echo $lang['there_is']?><span class="num"><?php echo $sites['need_defer'] ?></span><?php echo $lang['sites_num']?>解析需要延期 <a href="<?php echo SITE_URL ?>/?module=watch_all_schedule&type=need_defer"><?php echo $lang['check_into_list']?></a></dd>
+	<dd><?php echo $lang['there_is']?><span class="num"><?php echo $sites['finish'] ?></span><?php echo $lang['sites_num']?>解析完成 <a href="<?php echo SITE_URL ?>/?module=watch_all_schedule&type=finish"><?php echo $lang['check_into_list']?></a></dd>
+	<?php break; ?>
+	
+	<?php case 6: // 代码解析人员 ?>
+	<dd><?php echo $lang['you']?><?php echo $lang['there_is']?><span class="num"><?php echo $sites['parser_defer'] ?></span><?php echo $lang['sites_num']?>解析过期 <a href="<?php echo SITE_URL ?>/?module=parse_sites&type=past"><?php echo $lang['check_into_list']?></a></dd>
+	<dd><?php echo $lang['you']?><?php echo $lang['there_is']?><span class="num"><?php echo $sites['parser_wait'] ?></span><?php echo $lang['sites_num']?>等待解析 <a href="<?php echo SITE_URL ?>/?module=parse_sites&type=wait_parse"><?php echo $lang['check_into_list']?></a></dd>
+	<?php break; ?>
+	
+	<?php case 9: ?>
+	<dd><?php echo $lang['there_is']?><span class="num"><?php echo $sites['wait_proof'] ?></span><?php echo $lang['sites_num']?>等待验收 <a href="<?php echo SITE_URL ?>/?module=proof_schedule&type=wait_proof"><?php echo $lang['check_into_list']?></a></dd>
+	<?php break; ?>
+	
+	<?php case 4: ?>
+	<dd>现收录<span class="num"><?php echo $sites['finish_sites'] ?></span>个有效网站 <a href="<?php echo SITE_URL ?>/?module=search_views"><?php echo $lang['check_into_list']?></a></dd>
+	<?php break; ?>
+	
+	<?php default: ?>
+		<h2><?php echo $lang['welcome_to_use'] ?></h2>
+	
+	<?php break; ?>				
+
+<?php endswitch; ?>
+	<dt style="margin-top: 20px"><?php echo $lang['login_info'] ?></dt>
+	<dd><?php echo $lang['last_login_time'], ' : ', $_SESSION['user']['last_login_time'] ?></dd>
+	<dd><?php echo $lang['last_login_ip'], ' : ', $_SESSION['user']['last_login_ip'] ?></dd>
+</dl>
+</div>

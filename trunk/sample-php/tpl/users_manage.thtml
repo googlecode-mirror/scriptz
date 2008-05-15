@@ -1,0 +1,28 @@
+<div>
+<table style="width: 100%">
+	<tr>
+		<th>ID</th>
+		<th><?php echo $lang['username'] ?></th>
+		<th><?php echo $lang['nickname'] ?></th>
+		<th><?php echo $lang['user_type'] ?></th>
+		<th><?php echo $lang['email'] ?></th>
+		<th class="add_function"><a href="<?php echo SITE_URL ?>/?module=users_manage&action=add">
+		<?php echo $lang['add_user'] ?></a></th>
+	</tr>
+	
+	<?php foreach($users as $user) :?>
+	<tr>
+		<td><?php echo $user['id'] ?></td>
+		<td><?php echo $user['username'] ?></td>
+		<td><?php echo $user['nickname'] ?></td>
+		<td><?php echo $user['name'] ?></td>
+		<td><?php echo $user['email'] ?></td>
+		<td>
+			<a href="<?php echo SITE_URL ?>/?module=users_manage&action=edit&id=<?php echo $user['id'] ?>"><?php echo $lang['edit'] ?></a> / <a href="<?php echo SITE_URL ?>/?module=users_manage&action=del&id=<?php echo $user['id'] ?>" onclick="javascript:return confirm('<?php echo $lang['confirm_delete']?>?')"><?php echo $lang['delete'] ?></a>
+		</td>
+	</tr>
+	<?php endforeach; ?>
+	
+</table>
+
+</div>

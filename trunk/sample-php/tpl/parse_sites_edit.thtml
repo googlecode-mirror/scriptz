@@ -1,0 +1,129 @@
+<style>
+
+#view span {display: block; border-top: 1px solid #ececec; font-size: 20px; padding: 2px; }
+
+</style>
+
+<style type="text/css">@import url(<?php echo CSS ?>/ui.datepicker.css);</style> 
+<script type="text/javascript" src="<?php echo SITE_URL ?>/js/ui.datepicker.js"></script>
+
+<div id="view">
+
+<form action="" method="post">
+	<fieldset>
+	
+	<legend style="font-size:25px"><?php echo $pageTitle?></legend>
+	<?php if(isset($error)): ?>
+	<p class="error input_error"><?php echo $error ?></p>
+	<?php endif; ?>
+	<p>
+		<label><?php echo $lang['site_name'] ?></label><br />
+		<span><?php echo $site['name'] ?></span>
+	</p>
+	
+	<p>
+		<label><?php echo $lang['site_url'] ?></label><br />
+		<span><a href="<?php echo $site['url'] ?>" target="_blank"><?php echo $site['url'] ?></a></span>
+	</p>
+	
+	<p>
+		<label><?php echo $lang['site_rate'] ?></label><br />
+		<span><?php echo $site['rate'] ?></span>
+	</p>
+	
+	<p>
+		<label><?php echo $lang['site_quantity'] ?></label><br />
+		<span><?php echo $site['quantity'] ?></span>
+	</p>	
+	
+	<p>
+		<label><?php echo $lang['site_type_name'] ?></label><br />
+		<span><?php echo $site['type_name'] ?></span>
+	</p>	
+	
+	<p>
+		<label><?php echo $lang['site_type_degree'] ?></label><br />
+		 <span><?php echo $site['degree_name'] ?></span>
+	</p>	
+	
+	<p>
+		<label><?php echo $lang['site_type_area'] ?></label><br />
+		 <span><?php echo $site['area_name'] ?></span>
+	</p>	
+	
+	<p>
+		<label><?php echo $lang['site_desc'] ?></label><br />
+		<span><?php echo $site['desc'] ?></span>
+	</p>	
+
+	<p>
+		<label><?php echo $lang['site_language'] ?></label><br />
+		<span>
+		<?php if(is_array(unserialize($site['lang'])) && in_array('cn',unserialize($site['lang'])))echo  $lang['simple_chinese'] ?>&nbsp;&nbsp;
+		<?php if(is_array(unserialize($site['lang'])) && in_array('tw',unserialize($site['lang'])))echo  $lang['translate_chinese'] ?>&nbsp;&nbsp;
+		<?php if(is_array(unserialize($site['lang'])) && in_array('en',unserialize($site['lang'])))echo  $lang['english'] ?>
+		</span>
+	</p>
+	
+	<script type="text/javascript">
+	$(document).ready(function(){
+		$("input.input_show").click(function (){
+			$("div#reason:visible").slideUp("fast");$("div#parse_true:hidden").slideDown("fast");});
+		$("input.input_hide").click(function (){
+			$("div#reason:hidden").slideDown("fast");$("div#parse_true:visible").slideUp("fast")});
+		$('#inputDate').attachDatepicker();		
+	});		
+	jQuery(function($){
+	$.datepicker.regional['zh-CN'] = {clearText: '清除', clearStatus: '清除已选日期',
+		closeText: '关闭', closeStatus: '不改变当前选择',
+		prevText: '&lt;上月', prevStatus: '显示上月',
+		nextText: '下月&gt;', nextStatus: '显示下月',
+		currentText: '今天', currentStatus: '显示本月',
+		monthNames: ['一月','二月','三月','四月','五月','六月',
+		'七月','八月','九月','十月','十一月','十二月'],
+		monthNamesShort: ['一','二','三','四','五','六',
+		'七','八','九','十','十一','十二'],
+		monthStatus: '选择月份', yearStatus: '选择年份',
+		weekHeader: '周', weekStatus: '年内周次',
+		dayNames: ['星期日','星期一','星期二','星期三','星期四','星期五','星期六'],
+		dayNamesShort: ['周日','周一','周二','周三','周四','周五','周六'],
+		dayNamesMin: ['日','一','二','三','四','五','六'],
+		dayStatus: '设置 DD 为一周起始', dateStatus: '选择 m月 d日, DD',
+		dateFormat: 'yy-mm-dd', firstDay: 1, 
+		initStatus: '请选择日期', isRTL: false};
+	$.datepicker.setDefaults($.datepicker.regional['zh-CN']);
+	});
+	</script>	
+	
+	<p>
+		<label><?php echo $lang['finish'] ?></label><br />
+		<span><input class="input_show" type="radio" name="site[status]" value="8"<?php if($site['status']!='6')echo ' CHECKED'?>/><?php echo $lang['finish'] ?>&nbsp;&nbsp;&nbsp;<input class="input_hide" type="radio" name="site[status]" value="6"<?php if($site['status']=='6')echo ' CHECKED'?> /><?php echo $lang['defer'] ?></span>
+	</p>
+	
+	<div id="parse_true" style="<?php if($site['status']=='6')echo 'display:none'?>">
+	
+	<p>
+		<label><?php echo $lang['upload_code'] ?></label><br />
+		<span><textarea name="site[code]" class="title"><?php echo $site['code'] ?></textarea></span>
+	</p>
+	
+	</div>
+	
+	<div id="reason" style="<?php if($site['status']=='6'){echo 'display:block';} else{ echo 'display:none';}?>">
+	<p>
+		<label><?php echo $lang['defer_time'] ?></label><br />
+		<span><input id="inputDate" value="<?php echo ($site['defer_time']=='0000-00-00 00:00:00')?date("Y-m-d"):substr($site['defer_time'],0,11) ?>" name="site[defer_time]" size="10" type="text" class="text" style="width: 150px;font-size: 21px;font-style:italic" /></span>
+	</p>
+	
+	<p>
+		<label><?php echo $lang['reason'] ?></label><br />
+		<span><textarea name="site[defer_reason]" class="title"><?php echo $site['defer_reason'] ?></textarea></span>
+	</p>
+	</div>
+	
+	<p><input type="submit" value="<?php echo $lang['submit']?>"></p>
+	
+	</fieldset>
+</form>
+
+</div>

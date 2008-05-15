@@ -1,0 +1,38 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title><?php echo $pageTitle ?></title>
+<link rel="stylesheet" href="<?php echo CSS?>/blueprint/screen.css" type="text/css" media="screen, projection">
+<link rel="stylesheet" href="<?php echo CSS?>/blueprint/print.css" type="text/css" media="print">
+<!--[if IE]><link rel="stylesheet" href="../blueprint/lib/ie.css" type="text/css" media="screen, projection"><![endif]-->
+</head>
+<body style="text-align:center;">
+
+<div style="width:350px; text-align:left; margin: 0 auto;">
+  <form id="dummy" method="post" action="">
+    <fieldset>
+    <legend style="font-size:40px"><?php echo $pageTitle?></legend>
+	
+	<?php if($error): ?>
+		<p class="error"><?php echo $error?></p>
+	<?php endif?>
+	
+    <p>
+      <label for="dummy0"><?php echo $lang['username']?></label>
+      <br>
+      <input name="login[username]" class="title" type="text" />
+    </p>
+    <p>
+      <label for="dummy0"><?php echo $lang['password']?></label>
+      <br>
+      <input name="login[password]" class="title" type="password" />
+    </p>
+	
+	<p><input type="submit" value="<?php echo $lang['submit']?>"></p>
+    </fieldset>
+  </form>
+</div>
+</body>
+</html>

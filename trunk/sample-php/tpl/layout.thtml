@@ -1,0 +1,37 @@
+<?php include('../config/lang.'.LANG.'.php') ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title><?php echo $lang['site_title']?>::<?php echo $pageTitle?><?php if(isset($pageName) ) echo '::',$pageName?></title>
+<link rel="stylesheet" href="<?php echo CSS?>/blueprint/screen.css" type="text/css" media="screen, projection" />
+<link rel="stylesheet" href="<?php echo CSS?>/blueprint/print.css" type="text/css" media="print" />
+<link rel="stylesheet" href="<?php echo CSS?>/default.css" type="text/css" media="screen, projection" />
+<!--[if IE]><link rel="stylesheet" href="../blueprint/lib/ie.css" type="text/css" media="screen, projection" /><![endif]-->
+<script src="<?php echo SITE_URL?>/js/jquery-1.2.2.pack.js" type="text/javascript"></script>
+</head>
+
+<body>
+<div id="pager" class="container"> 
+<h1 id="page_title"><?php echo $lang['site_title']?>::<?php echo $pageTitle?><?php if(isset($pageName) ) echo '::',$pageName?></h1>
+
+<hr />
+
+<div id="left_menu" class="column span-3 prepend-1 colborder">
+	<?php include_once('menu.thtml')?>
+</div>
+
+<div id="right_content" class="column span-19 last">
+ <?php echo $contents?>
+</div> 
+
+<hr class="clear space no_display" />
+
+<div id="footer">
+	<?php echo SYS_INFO ?>
+</div>
+ 
+</div>
+
+</body>
+</html>

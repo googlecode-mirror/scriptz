@@ -1,0 +1,153 @@
+
+<style>
+
+#view span {display: block; border-top: 1px solid #ececec; font-size: 20px; padding: 2px; }
+
+</style>
+
+<div id="view" class="column span-9">
+	<fieldset>
+	
+	<legend style="font-size:25px"><?php echo $lang['view_schedule']?></legend>
+	<?php if(isset($error)): ?>
+	<p class="error input_error"><?php echo $error ?></p>
+	<?php endif; ?>
+	<p>
+		<label><?php echo $lang['site_name'] ?></label><br />
+		<span><?php echo $site['name'] ?></span>
+	</p>
+	
+	<p>
+		<label><?php echo $lang['site_url'] ?></label><br />
+		<span><a href="<?php echo $site['url'] ?>" target="_blank"><?php echo $site['url'] ?></a></span>
+	</p>
+	
+	<p>
+		<label><?php echo $lang['site_rate'] ?></label><br />
+		<span><?php echo $site['rate'] ?></span>
+	</p>
+	
+	<p>
+		<label><?php echo $lang['site_quantity'] ?></label><br />
+		<span><?php echo $site['quantity'] ?></span>
+	</p>	
+	
+	<p>
+		<label><?php echo $lang['site_type_name'] ?></label><br />
+		<span><?php echo $site['type_name'] ?></span>
+	</p>	
+	
+	<p>
+		<label><?php echo $lang['site_type_degree'] ?></label><br />
+		 <span><?php echo $site['degree_name'] ?></span>
+	</p>	
+	
+	<p>
+		<label><?php echo $lang['site_type_area'] ?></label><br />
+		 <span><?php echo $site['area_name'] ?></span>
+	</p>	
+	
+	<p>
+		<label><?php echo $lang['site_desc'] ?></label><br />
+		<span><?php echo $site['desc'] ?></span>
+	</p>	
+
+	<p>
+		<label><?php echo $lang['site_language'] ?></label><br />
+		<span>
+		<?php if(is_array(unserialize($site['lang'])) && in_array('cn',unserialize($site['lang'])))echo  $lang['simple_chinese'] ?>&nbsp;&nbsp;
+		<?php if(is_array(unserialize($site['lang'])) && in_array('tw',unserialize($site['lang'])))echo  $lang['translate_chinese'] ?>&nbsp;&nbsp;
+		<?php if(is_array(unserialize($site['lang'])) && in_array('en',unserialize($site['lang'])))echo  $lang['english'] ?>
+		</span>
+	</p>	
+	
+	</fieldset>
+</div>
+
+
+<div class="column span-10 last">
+	
+	<fieldset style="background: #fff">
+	<legend style="font-size:25px"><?php echo $lang['status']?></legend>
+	
+	<div class="<?php echo ($site['status']=='1')?'schedule_status_false':'schedule_status'?>">
+		<span class="status_title"><?php echo ($site['status']=='1')?$lang['status_1']:$lang['finish_examine']?></span><br />
+		<?php echo $site['created'] ?>
+	</div>
+	
+	<div class="<?php echo ($site['status']!='1'&&$site['status']!='3')?'schedule_status':'schedule_status_false';?>">
+		<span class="status_title"><?php if($site['status']!='1'){echo  ($site['status']=='3')?$lang['status_3']:$lang['status_2'];}else{echo $lang['in_examine'];}?></span><br />
+		<?php if($site['examine_time']!='0000-00-00 00:00:00')echo $site['examine_time'] ?>
+	</div>
+	
+	<div class="<?php echo ($site['status']>'4')?'schedule_status':'schedule_status_false'?>">
+		<span class="status_title">
+		<?php
+			if($site['status']==3|| $site['status']<2) {
+				echo $lang['status_1'];
+			}elseif($site['status']==2){
+				echo $lang['wait_plan'];
+			}elseif($site['status']==4){
+				echo $lang['status_4'];
+			}elseif($site['status']==5){
+				echo $lang['status_5'];
+			}elseif($site['status']==6){
+				echo $lang['status_4'];
+			}elseif($site['status']>=8){
+				echo $lang['finish_parse'];
+			}
+		?>
+		</span><br />
+		<?php 
+			if(substr($site['start_time'],0,10)!='0000-00-00'){
+				echo substr($site['start_time'],0,10).' ~ '.substr($site['end_time'],0,10);
+			}
+		?>
+	</div>
+	
+	<?php if(($site['status'] >8) && ($site['status']==6||$site['defer_time']>date("Y-m-d")) ): ?>
+	<div class="schedule_status">
+		<span class="status_title"><?php echo $lang['status_6']?></span>
+		<?php if($site['defer_time']!='0000-00-00 00:00:00'): ?>
+			<br />延期至 <?php echo $site['defer_time'] ?>
+		<?php endif; ?>
+	</div>
+	
+	<?php elseif(($site['status'] >8) && substr($site['end_time'],0,10)<date("Y-m-d")): ?>
+	<div class="schedule_status_false">   
+		<span class="status_title"><?php echo $lang['status_7']?></span>
+		<?php if($site['defer_time']!='0000-00-00 00:00:00'): ?>
+			<br />延期至 <?php echo $site['defer_time'] ?>
+		<?php endif; ?>
+	</div>	
+	<?php endif; ?>
+	
+	<div class="<?php echo ($site['status']>'7'&&$site['status']!=11)?'schedule_status':'schedule_status_false'?>">
+		<span class="status_title">
+		<?php
+			if($site['status']<8){
+				echo $lang['wait_check'];
+			}elseif ($site['status']==9){
+				echo $lang['proofing'];
+			}elseif ($site['status']==10){
+				echo $lang['status_10'];
+			}elseif ($site['status']==11){
+				echo $lang['status_11'];
+			}
+		?>
+		
+		</span>
+		<?if ($site['status']==10): ?>
+			<br />
+			<?php echo $site['modified']?>
+		<?php endif; ?>
+	</div>
+	
+	<div class="<?php echo ($site['status']!='10')?'schedule_status_end_false':'schedule_status_end'?>">
+		<br />
+		<span class="status_title"><?php echo ($site['status']=='10')?$lang['finish']:$lang['not_finish']?></span><br />
+	
+	</div>
+	
+	</fieldset>
+</div>
