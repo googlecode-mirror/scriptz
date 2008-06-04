@@ -1,4 +1,5 @@
 #summary About FreeBSD Ports.
+#labels Phase-FreeBSD,Phase-Administration
 
 = FreeBSD About =
 
