@@ -1,7 +1,11 @@
 #summary FreeBSD Wiki page, kownelge base.
+#labels Phase-FreeBSD,Phase-Administration
 
 = FreeBSD =
 == Ports make from a site. ==
 {{{
 make MASTER_SITE_OVERRIDE=ftp://ftp.freebsdchina.org/pub/FreeBSD/ports/distfiles/
 }}}
+
+== Good Kownelge Site ==
+ # http://www.weithenn.idv.tw/cgi-bin/wiki.pl/網站地圖
