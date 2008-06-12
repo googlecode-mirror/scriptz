@@ -3,5 +3,7 @@
 = Awstats Note =
 
 {{{
-sudo /opt/local/bin/perl /opt/local/awstats/wwwroot/cgi-bin/awstats.pl -froce -config=isoshu.com update -databasebreak=day
+$ sudo /opt/local/bin/perl \
+/opt/local/awstats/wwwroot/cgi-bin/awstats.pl \
+-froce -config=isoshu.com update -databasebreak=day
 }}}
