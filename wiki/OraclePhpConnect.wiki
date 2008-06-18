@@ -20,14 +20,18 @@
 {{{
 OCIPLogin($username, $passWord [, $tnsname])
 }}}
-或
-{{{　　
-　　OCINLogin($username, $password [, $tnsname])
+  或
+{{{
+OCINLogin($username, $password [, $tnsname])
 }}}
+
   这两个函数都创建持续的服务器连接，尽管 OCINLogin() 将为每个请求创建一个新会话句柄。假如您的应用程序要使用事务，并且您希望将同时发生的事务分散到多个会话中，则可以使用 OCINLogin()。　　
   使用持续连接的一个副作用是您更轻易出现进程不足的情况。基于专用 Oracle 数据库运行单个 Apache Web 服务器（子进程的最大默认数量为 256）时，可能从不会碰到问题。但是假如增加到 4 个 Web 服务器，每个服务器运行 256 个具有持续 Oracle 连接的子进程，现在则要创建 1024 个与 Oracle 数据库的连接，并且很快就会与 Oracle 实例的资源限制发生冲突。　　
-  在 Oracle 实例配置文件 (init.ora) 中，有两个可调整的参数：　　
-  sessions = NNNN 和 processes = NNNN。　
+  在 Oracle 实例配置文件 (init.ora) 中，有两个可调整的参数:
+{{{
+sessions = NNNN
+processes = NNNN
+}}}
   这两个参数控制着实例可以支持的最大会话数和最大进程数。假如您需要支持 1024 个同时出现的连接，则需要至少 1024 个会话（因为 OCINLogin() 连接和某些递归查询可能在每个连接中需要多个会话），而需要的进程还会更多（因为我们还需要考虑 Oracle 后台进程）。不幸的是，不能任意将这些进程设得很高。Oracle 进程消耗不少的专用内存（在多数系统中每个进程需要 2 到 3MB）。从个体来说，这些进程很小，但当把它们作为一组并与服务器系统全局区 (SGA) 所需要的共享内存相结合时，很快就会让您因为数据库服务器的物理内存限制而感到烦恼。
   来自 mysql 环境的用户可能试图避开持续连接（这是 MySQL 环境中的建议）。由 Oracle 影子进程启动所导致的栓锁和文件争用使得非持续连接的使用效率极低。那么解决方案是什么呢？
   应该确定我们的数据库能够支持多少个同时发生的会话，并相应地设置其限制。有些文章具体说明了如何完成此工作，但主要是一个计算过程：计算系统中物理内存的总量，并减去内核、支持程序和 Oracle 后台进程所使用的内存。然后减去所有被配置为 Oracle 共享内存的那些内存（共享池和缓冲区高速缓存）。剩下的内存可以用于影子进程。将该数量除以一个影子进程所使用的专用进程内存的平均数量（应该自己测出该数量，因为它根据您所运行的查询性质而变化），则我们得到可支持的进程数量。
@@ -37,23 +41,23 @@ OCIPLogin($username, $passWord [, $tnsname])
 == 执行 SQL ==
   任何 Oracle 客户服务器关系的主要内容是执行查询。这里没有篇幅来谈论对查询的调整 — 那是需要整本书来讨论的主题。相反，我们将集中讨论如何尽可能地使已经调整过的查询高效运行。
   使用 PHP 编写良好的 Oracle 应用程序代码的第一步是始终使用绑定 SQL。当我们编写类似以下的查询时：
-{{{　　
-　　SELECT * FROM USERS WHERE USERNAME = 'george'
+{{{
+SELECT * FROM USERS WHERE USERNAME = 'george'
 }}}
   Oracle 必须对该查询进行软分析，查看以前是否曾编译过该查询。在默认情况下，"george" 值被作为文字项，这意味着假如我们使用不同的名字 ('bob') 执行此查询，则 Oracle 将把它看作完全不同的查询。Oracle 在其共享池中保留它执行的每个查询的分析副本，因此假如您使用数千个名字来执行此查询，则在您的共享池中将有数千个该查询的不同副本。即使在轻度活跃的网站上，这也会导致严重的内存碎片以及 ORA-4031 错误增殖。
   对这个问题的解决方案是使用绑定 SQL。绑定 SQL 答应我们将 WHERE 子句中的文字值替换为占位符，如下所示：
-{{{　　
-　　SELECT * FROM USERS WHERE USERNAME = ':NAME'
+{{{
+SELECT * FROM USERS WHERE USERNAME = ':NAME'
 }}}
   在这里，查询只须被完全分析一次（硬分析）；以后所有的分析都是所谓的软分析，此时引擎只是简单地从 SGA 中提取已编译的查询。此外，将只有一个单次分析的副本被存储，从而显著减少了不断执行的查询对内存的需求。
   现在我们可以执行如下：
-{{{　　
-　　<?php
-　　$db = OCIPLogin('scott', 'tiger', 'testdb');
-　　$stmt = OCIParse("SELECT * FROM USERS WHERE USERNAME = ':NAME'");
-　　OCIBindByName($stmt, ":NAME", "george");
-　　OCIExecute($stmt);
-　　?>
+{{{
+<?php
+$db = OCIPLogin('scott', 'tiger', 'testdb');
+$stmt = OCIParse("SELECT * FROM USERS WHERE USERNAME = ':NAME'");
+OCIBindByName($stmt, ":NAME", "george");
+OCIExecute($stmt);
+?>
 }}}
   在 Oracle8i 之前，我们必须手动绑定查询；从 8i 开始，通过设置 init.ora 的参数 "cursor_sharing = FORCE"，我们可以指示优化器为我们完成这一工作。该设置通知优化器查找可以绑定的文字值，并手动执行绑定。自 9i 起，我们可以使用设置“cursor_sharing = SIMILAR”，该设置指示优化器深入查看基表的统计信息，了解自动绑定文字是否有好处（假如某个字段的分布极不均匀，则可能没有好处）。尽管应该启用这些设置（在 8i 中为 FORCE，在 9i 及更高版本中为 SIMILAR），但深入到查询中分析潜在绑定的这种操作对于优化器而言成本很高，因此在可能的情况下，应该手动绑定您的查询。
   Oracle 客户服务器在 SQLNet 协议基础上运行，众所周知，这种协议的对话很多。例如，假如您执行一个返回 100 行的查询，则会有分析查询的对话交换、对每个绑定变量的交换、对执行的查询以及对每个提取行的查询。其中每次交换都包括客户端与服务器之间的网络数据包交换（称为一次往返）。减少往返次数可能具有深刻的性能影响。 
