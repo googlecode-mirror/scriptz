@@ -79,4 +79,4 @@ OCIExecute($stmt);
 ----
 
 *引用*
-  * http://www.oracle.com/technology/global/cn/pub/articles/php_experts/scaling_oracle_and_php.html
+  * [http://www.oracle.com/technology/global/cn/pub/articles/php_experts/scaling_oracle_and_php.html 扩展可伸缩Oracle 与PHP]
