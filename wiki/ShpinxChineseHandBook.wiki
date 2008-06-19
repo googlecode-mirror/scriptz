@@ -57,7 +57,7 @@ Sphinx是一个基于SQL的全文检索引擎，可以结合MySQL,PostgreSQL做�
 ==2. Sphinx安装(For MySQL)==
 ===2.1. Windows下安装===
 
-  # 从http://dev.mysql.com上下载MySQL5.0.45版安装配置好MySQL，采用utf-8字符集
+  # 从http://dev.mysql.com 上下载 MySQL5.0.45 版安装配置好MySQL，采用utf-8字符集
   # 从Sphinx官网上http://www.sphinxsearch.com/downloads.html下载mysql-5.0.45-sphinxse-r871-win32.zip和sphinx-0.9.8-svn-r985-win32.zip
   # 如果您的MySQL服务已启动请先停止掉
   # 解压mysql-5.0.45-sphinxse-r871-win32.zip，将里面bin与share目录覆盖掉你的mysql安装目录下的相应目录
@@ -800,7 +800,7 @@ select t.*,c.* from eht_articles as c,sphinx as t where c.articlesid=t.id and qu
 
 ==9. 如何自动重建索引==
 ==10. 相关资源==
-  * Sphinx官方网站：www.sphinxsearch.com
+  * Sphinx官方网站：http://www.sphinxsearch.com
   * 用php构建自定义搜索引擎：http://www.ibm.com/developerworks/cn/opensource/os-php-sphinxsearch/index.html
   * [http://www.jcan.19dog.com/sphinx/sphinxManual.html 官方手册文档]
   * [http://www.jcan.19dog.com/sphinx/sphinx.conf 本文中提到的sphinx.conf配置文件]
