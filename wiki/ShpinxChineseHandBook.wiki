@@ -1,4 +1,5 @@
 #summary One-sentence summary of this page.
+#labels Phase-Database,Phase-PHP
 
 =Sphinx速成指南=
 
@@ -58,7 +59,7 @@ Sphinx是一个基于SQL的全文检索引擎，可以结合MySQL,PostgreSQL做�
 ===2.1. Windows下安装===
 
   # 从http://dev.mysql.com 上下载 MySQL5.0.45 版安装配置好MySQL，采用utf-8字符集
-  # 从Sphinx官网上http://www.sphinxsearch.com/downloads.html下载mysql-5.0.45-sphinxse-r871-win32.zip和sphinx-0.9.8-svn-r985-win32.zip
+  # 从Sphinx官网上 http://www.sphinxsearch.com/downloads.html 下载 mysql-5.0.45-sphinxse-r871-win32.zip 和 sphinx-0.9.8-svn-r985-win32.zip
   # 如果您的MySQL服务已启动请先停止掉
   # 解压mysql-5.0.45-sphinxse-r871-win32.zip，将里面bin与share目录覆盖掉你的mysql安装目录下的相应目录
   # 解压sphinx-0.9.8-svn-r985-win32.zip ，将里面的文件解压到D:\sphinx
