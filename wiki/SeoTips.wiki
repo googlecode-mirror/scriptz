@@ -1,0 +1,6 @@
+#summary SEO Tips.
+#labels Phase-Programming
+
+= SEO Tips =
+
+  * [http://www.webconfs.com/15-minute-seo.php List of Best and Worst practices for designing a high traffic website]
