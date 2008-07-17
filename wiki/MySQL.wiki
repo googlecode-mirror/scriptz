@@ -8,13 +8,13 @@ SHOW FULL PROCESSLIST;
 
 同时在线访问量继续增大 对于1G内存的服务器明显感觉到吃力严重时甚至每天都会死机 或者时不时的服务器卡一下 这个问题曾经困扰了我半个多月MySQL使用是很具伸缩性的算法，因此你通常能用很少的内存运行或给MySQL更多的被存以得到更好的性能。
 
-安装好mysql后，配制文件应该在/usr/local/mysql/share/mysql目录中，配制文件有几个，有my- huge.cnf my-medium.cnf my-large.cnf my-small.cnf,不同的流量的网站和不同配制的服务器环境，当然需要有不同的配制文件了。
+安装好mysql后，配制文件应该在/usr/local/mysql/share/mysql目录中，配制文件有几个，有my-huge.cnf my-medium.cnf my-large.cnf my-small.cnf,不同的流量的网站和不同配制的服务器环境，当然需要有不同的配制文件了。
 
-一般的情况下，my-medium.cnf这个配制文件就能满足我们的大多需要；一般我们会把配置文件拷贝到/etc/my.cnf 只需要修改这个配置文件就可以了，使用mysqladmin variables extended-status –u root –p 可以看到目前的参数，有３个配置参数是最重要的，即key_buffer_size,query_cache_size,table_cache。
+一般的情况下，my-medium.cnf这个配制文件就能满足我们的大多需要；一般我们会把配置文件拷贝到/etc/my.cnf 只需要修改这个配置文件就可以了，使用 `mysqladmin variables extended-status –u root –p` 可以看到目前的参数，有３个配置参数是最重要的，即key_buffer_size,query_cache_size,table_cache。
 
 key_buffer_size只对MyISAM表起作用，
 
-key_buffer_size指定索引缓冲区的大小，它决定索引处理的速度，尤其是索引读的速度。一般我们设为16M,实际上稍微大一点的站点　这个数字是远远不够的，通过检查状态值Key_read_requests和Key_reads,可以知道key_buffer_size设置是否合理。比例key_reads / key_read_requests应该尽可能的低，至少是1:100，1:1000更好（上述状态值可以使用SHOW STATUS LIKE ‘key_read%’获得）。 或者如果你装了phpmyadmin 可以通过服务器运行状态看到,笔者推荐用phpmyadmin管理mysql，以下的状态值都是本人通过phpmyadmin获得的实例分析:
+key_buffer_size指定索引缓冲区的大小，它决定索引处理的速度，尤其是索引读的速度。一般我们设为16M,实际上稍微大一点的站点　这个数字是远远不够的，通过检查状态值Key_read_requests和Key_reads,可以知道key_buffer_size设置是否合理。比例key_reads / key_read_requests应该尽可能的低，至少是1:100，1:1000更好（上述状态值可以使用 `SHOW STATUS LIKE ‘key_read%’` 获得）。 或者如果你装了phpmyadmin 可以通过服务器运行状态看到,笔者推荐用phpmyadmin管理mysql，以下的状态值都是本人通过phpmyadmin获得的实例分析:
 
 这个服务器已经运行了20天
 {{{
@@ -58,7 +58,7 @@ Qcache total blocks 30953
 }}}
 如果内存允许32M应该要往上加点
 
-table_cache指定表高速缓存的大小。每当MySQL访问一个表时，如果在表缓冲区中还有空间，该表就被打开并放入其中，这样可以更快地访问表内容。通过检查峰值时间的状态值Open_tables和Opened_tables，可以决定是否需要增加table_cache的值。如果你发现open_tables等于table_cache，并且opened_tables在不断增长，那么你就需要增加table_cache的值了（上述状态值可以使用SHOW STATUS LIKE ‘Open%tables’获得）。注意，不能盲目地把table_cache设置成很大的值。如果设置得太高，可能会造成文件描述符不足，从而造成性能不稳定或者连接失败。
+table_cache指定表高速缓存的大小。每当MySQL访问一个表时，如果在表缓冲区中还有空间，该表就被打开并放入其中，这样可以更快地访问表内容。通过检查峰值时间的状态值Open_tables和Opened_tables，可以决定是否需要增加table_cache的值。如果你发现open_tables等于table_cache，并且opened_tables在不断增长，那么你就需要增加table_cache的值了（上述状态值可以使用 `SHOW STATUS LIKE ‘Open%tables’` 获得）。注意，不能盲目地把table_cache设置成很大的值。如果设置得太高，可能会造成文件描述符不足，从而造成性能不稳定或者连接失败。
 
 对于有1G内存的机器，推荐值是128－256。
 
@@ -309,10 +309,10 @@ interactive-timeout
 }}}
 补充
 
-优化table_cachetable_cache指定表高速缓存的大小。每当MySQL访问一个表时，如果在表缓冲区中还有空间，该表就被打开并放入其中，这样可以更快地访问表内容。通过检查峰值时间的状态值Open_tables和Opened_tables，可以决定是否需要增加 table_cache的值。如果你发现open_tables等于table_cache，并且opened_tables在不断增长，那么你就需要增加table_cache的值了（上述状态值可以使用SHOW STATUS LIKE ‘Open%tables’获得）。注意，不能盲目地把table_cache设置成很大的值。如果设置得太高，可能会造成文件描述符不足，从而造成性能不稳定或者连接失败。对于有1G内存的机器，推荐值是128－256。
+优化table_cachetable_cache指定表高速缓存的大小。每当MySQL访问一个表时，如果在表缓冲区中还有空间，该表就被打开并放入其中，这样可以更快地访问表内容。通过检查峰值时间的状态值Open_tables和Opened_tables，可以决定是否需要增加 table_cache的值。如果你发现open_tables等于table_cache，并且opened_tables在不断增长，那么你就需要增加table_cache的值了（上述状态值可以使用 `SHOW STATUS LIKE ‘Open%tables’` 获得）。注意，不能盲目地把table_cache设置成很大的值。如果设置得太高，可能会造成文件描述符不足，从而造成性能不稳定或者连接失败。对于有1G内存的机器，推荐值是128－256。
 
 案例1：该案例来自一个不是特别繁忙的服务器table_cache – 512open_tables – 103opened_tables – 1273uptime – 4021421 (measured in seconds)该案例中table_cache似乎设置得太高了。在峰值时间，打开表的数目比table_cache要少得多。
 
-案例2：该案例来自一台开发服务器。table_cache – 64open_tables – 64opened-tables – 431uptime – 1662790 (measured in seconds)虽然open_tables已经等于table_cache，但是相对于服务器运行时间来说，opened_tables的值也非常低。因此，增加table_cache的值应该用处不大。案例3：该案例来自一个upderperforming的服务器table_cache – 64open_tables – 64opened_tables – 22423uptime – 19538该案例中table_cache设置得太低了。虽然运行时间不到6小时，open_tables达到了最大值，opened_tables的值也非常高。这样就需要增加table_cache的值。优化key_buffer_sizekey_buffer_size指定索引缓冲区的大小，它决定索引处理的速度，尤其是索引读的速度。通过检查状态值Key_read_requests和Key_reads，可以知道key_buffer_size 设置是否合理。比例key_reads / key_read_requests应该尽可能的低，至少是1:100，1:1000更好（上述状态值可以使用SHOW STATUS LIKE ‘key_read%’获得）。key_buffer_size只对MyISAM表起作用。即使你不使用MyISAM表，但是内部的临时磁盘表是 MyISAM表，也要使用该值。可以使用检查状态值created_tmp_disk_tables得知详情。对于1G内存的机器，如果不使用 MyISAM表，推荐值是16M（8-64M）。
+案例2：该案例来自一台开发服务器。table_cache – 64open_tables – 64opened-tables – 431uptime – 1662790 (measured in seconds)虽然open_tables已经等于table_cache，但是相对于服务器运行时间来说，opened_tables的值也非常低。因此，增加table_cache的值应该用处不大。案例3：该案例来自一个upderperforming的服务器table_cache – 64open_tables – 64opened_tables – 22423uptime – 19538该案例中table_cache设置得太低了。虽然运行时间不到6小时，open_tables达到了最大值，opened_tables的值也非常高。这样就需要增加table_cache的值。优化key_buffer_sizekey_buffer_size指定索引缓冲区的大小，它决定索引处理的速度，尤其是索引读的速度。通过检查状态值Key_read_requests和Key_reads，可以知道key_buffer_size 设置是否合理。比例key_reads / key_read_requests应该尽可能的低，至少是1:100，1:1000更好（上述状态值可以使用 `SHOW STATUS LIKE ‘key_read%’` 获得）。key_buffer_size只对MyISAM表起作用。即使你不使用MyISAM表，但是内部的临时磁盘表是 MyISAM表，也要使用该值。可以使用检查状态值created_tmp_disk_tables得知详情。对于1G内存的机器，如果不使用 MyISAM表，推荐值是16M（8-64M）。
 
 案例1：健康状况key_buffer_size – 402649088 (384M)key_read_requests – 597579931key_reads - 56188案例2：警报状态key_buffer_size – 16777216 (16M)key_read_requests – 597579931key_reads - 53832731案例1中比例低于1:10000，是健康的情况；案例2中比例达到1:11，警报已经拉响。 
