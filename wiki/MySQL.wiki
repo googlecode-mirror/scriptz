@@ -2,6 +2,10 @@
 
 = MySQL优化经验 =
 
+{{{
+SHOW FULL PROCESSLIST;
+}}}
+
 同时在线访问量继续增大 对于1G内存的服务器明显感觉到吃力严重时甚至每天都会死机 或者时不时的服务器卡一下 这个问题曾经困扰了我半个多月MySQL使用是很具伸缩性的算法，因此你通常能用很少的内存运行或给MySQL更多的被存以得到更好的性能。
 
 安装好mysql后，配制文件应该在/usr/local/mysql/share/mysql目录中，配制文件有几个，有my- huge.cnf my-medium.cnf my-large.cnf my-small.cnf,不同的流量的网站和不同配制的服务器环境，当然需要有不同的配制文件了。
