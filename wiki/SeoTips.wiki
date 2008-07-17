@@ -1,4 +1,4 @@
-#summary SEO Tips.
+#summary SEO Tips to all.
 #labels Phase-Programming
 
 = SEO Tips =
