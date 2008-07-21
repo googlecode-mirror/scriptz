@@ -1,4 +1,4 @@
-#summary One-sentence summary of this page.
+#summary how to install apache on your servers.
 #labels Phase-Apache
 
 = How To Install Apache Web Server =
