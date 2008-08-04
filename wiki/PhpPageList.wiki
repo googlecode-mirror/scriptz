@@ -1,7 +1,7 @@
 #summary PHP分页.
 #labels Phase-PHP
 
-= Introduction =
+= PHP分页类收集 =
 
 == 类似百度分页 ==
 {{{
