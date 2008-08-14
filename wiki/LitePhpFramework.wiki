@@ -7,7 +7,7 @@
  * [PageName 简单模板类]
 
 == 数据库操作类 ==
-
+ * [PhpMysqlClass 数据库操作类]
 == 分页类 ==
  * [PhpPageList 类似百度搜索结果分页类]
 
