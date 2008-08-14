@@ -11,3 +11,6 @@
  * [PhpPageList 类似百度搜索结果分页类]
 
 == URL重写类 ==
+
+== 其他常用函数 ==
+ * [PhpStrigCutUTF8 UTF8字符截取函数]
