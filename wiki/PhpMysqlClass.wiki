@@ -6,7 +6,7 @@
 == 简单操作类 ==
 {{{
 <?php
-class sql_dbNews{
+class sql_db{
 	/*开始MYSQL数据库的类*/
 	var $db_link; //数据库连接点
 	var $db_res; //获得的结果集
@@ -17,8 +17,8 @@ class sql_dbNews{
 	var $db_pass='root'; //密码
 	
 	//连接数据库
-	function sql_dbNews(){
-		$this->db_link=@mysql_connect($this->db_host,$this->db_user,$this->db_pass);	
+	function sql_db(){
+		  $this->db_link=@mysql_connect($this->db_host,$this->db_user,$this->db_pass);	
 		mysql_query("set names 'utf8'");
 		@mysql_select_db($this->db_dbname,$this->db_link);
 		//return $this->db_link;	
