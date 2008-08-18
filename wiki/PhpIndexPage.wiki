@@ -1,0 +1,7 @@
+#summary PHP 统一入口页面.
+#labels Phase-PHP,Phase-Programming
+
+= PHP统一入口页面 =
+
+== 相关文章 ==
+ * [http://phpsec.org/projects/guide/1.html 入口文件安全性]
