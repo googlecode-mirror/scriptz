@@ -1,3 +1,7 @@
+# $Id$
+# zhuzhu@cpan.org
+# Slackware $HOME/.bashrc
+
 # Add my path
 export PATH="$HOME/bin:$HOME/scripts:/usr/sbin:/sbin:$PATH"
 # System-wide .bashrc file for interactive bash(1) shells.
@@ -75,3 +79,4 @@ else
 fi
 
 export PATH=$PATH:"/opt/UNA-1.0"
+export LD_LIBRARY_PATH=/usr/local/bin:$LD_LIBRARY_PATH
