@@ -1,8 +1,9 @@
 ;; Emacs config file slackware
 ;; $Id$
-;; zhuzhu@perlchina.org
+;; zhuzhu@cpan.org
 ;; emacs23 version
-;;
+;; Refrence: http://docs.huihoo.com/homepage/shredderyin/emacs_elisp.html
+;; 
 
 ;; ======= Add load path =========
 (if (fboundp 'normal-top-level-add-subdirs-to-load-path)
@@ -10,6 +11,24 @@
 (default-directory my-lisp-dir))
 (setq load-path (cons my-lisp-dir load-path))
 (normal-top-level-add-subdirs-to-load-path)))
+
+;; ======= Require Hack File ======
+(require 'htmlize-hack)
+
+;; ======= Fonts =======
+(set-face-font 'menu "Lucida Console-10")
+(set-default-font "Monaco-10")
+(set-fontset-font (frame-parameter nil 'font)
+   'han '("Wenquanyi Zen Hei" . "unicode-bmp"))
+
+;; ======= Bar-cursor-mode ======
+;(setq-default cursor-type 'bar)
+(setq frame-title-format ' buffer-file-name )
+(transient-mark-mode t)
+(setq enable-recursive-minibuffers t)
+(setq default-fill-column 80)
+(setq scroll-margin 1 scroll-conservatively 10000)
+
 
 ;; ======= Add Js2 Mode =======
 ;; http://code.google.com/p/js2-mode/
@@ -37,7 +56,7 @@
 (setq standard-indent 2)
 
 ;; ======= Line by line scrolling ========
-(setq scroll-step 1)
+(setq scroll-step 0)
 
 ;; ======= Turn off tab characer ======
 (setq-default indent-tabs-mode nil)
@@ -59,6 +78,9 @@
 ;; ======= Enable line and column number ======
 (line-number-mode 1)
 (column-number-mode 1)
+
+;; ======= Character =======
+(setq-default line-spacing 1)
 
 ;; ======= Set the fill column =======
 (setq-default fill-column 72)
@@ -102,7 +124,63 @@
   ;; If you edit it by hand, you could mess it up, so be careful.
   ;; Your init file should contain only one such instance.
   ;; If there is more than one, they won't work right.
- )
+ '(fixed-pitch ((t nil)))
+ '(variable-pitch ((t nil))))
+
+;; ======= yasnippet =======
+(require 'yasnippet)
+(yas/initialize)
+(yas/load-directory "/home/fred/local/share/emacs/site-lisp/yasnippet/snippets/")
+
+;; ======= Auto Compulete ========
+;; enable skeleton-pair insert globally
+(setq skeleton-pair t)
+; (setq skeleton-pair-on-word t) ; apply skeleton trick even in front of a word.
+(global-set-key "("  'skeleton-pair-insert-maybe)
+(global-set-key "["  'skeleton-pair-insert-maybe)
+(global-set-key "{"  'skeleton-pair-insert-maybe)
+(global-set-key "\"" 'skeleton-pair-insert-maybe)
+(global-set-key "'"  'skeleton-pair-insert-maybe)
+
+;; ======= Useful Config =========
+;; Visit here get more
+;; http://docs.huihoo.com/homepage/shredderyin/emacs_elisp.html
+(require 'ibuffer)
+(global-set-key (kbd "C-x C-b") 'ibuffer)
+(require 'ido)
+(ido-mode t)
+;; 
+(global-set-key "%" 'match-paren)
+          
+(defun match-paren (arg)
+  "Go to the matching paren if on a paren; otherwise insert %."
+  (interactive "p")
+  (cond ((looking-at "\\s\(") (forward-list 1) (backward-char 1))
+	((looking-at "\\s\)") (forward-char 1) (backward-list 1))
+	(t (self-insert-command (or arg 1)))))
+
+;; ======= Another Setting =======
+(setq kill-ring-max 200)
+(setq default-fill-column 60)
+(setq scroll-margin 3
+      scroll-conservatively 10000)
+
+;; ======= W3m ========
+(require 'w3m-load)
+(setq w3m-command-arguments '("-cookie" "-F"))
+(setq w3m-use-cookies t)
+(setq w3m-home-page "http://home.lz3.org/zhuzhu")
+(setq w3m-tab-width 8)
+(setq browse-url-browser-function 'w3m-browse-url)
+(autoload 'w3m-browse-url "w3m" "Ask a WWW browser to show a URL." t)
+(global-set-key (kbd "C-c o") 'browse-url-at-point)
+
+;; ======= Set User Infomation =======
+(setq user-full-name "Fred Chu")
+(setq user-mail-address "fred1982@gmail.com")
+
+;; ======= Emacs Wiki ========
+(require 'emacs-wiki)
 
 ;; ======= Load color-theme lisp ========
 ;; Must at end of the config file!
