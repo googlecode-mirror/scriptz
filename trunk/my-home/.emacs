@@ -17,7 +17,7 @@
 
 ;; ======= Fonts =======
 (set-face-font 'menu "Lucida Console-10")
-(set-default-font "Monaco-10")
+(set-frame-font "Monaco-10")
 (set-fontset-font (frame-parameter nil 'font)
    'han '("Wenquanyi Zen Hei" . "unicode-bmp"))
 
@@ -27,7 +27,7 @@
 (transient-mark-mode t)
 (setq enable-recursive-minibuffers t)
 (setq default-fill-column 80)
-(setq scroll-margin 1 scroll-conservatively 10000)
+(setq scroll-margin 1 scroll-conservatively 5000)
 
 
 ;; ======= Add Js2 Mode =======
@@ -49,11 +49,15 @@
 (global-font-lock-mode t)
 (setq font-lock-maximum-decoration t)
 
+;; ======= Change Tab Width ========
+(setq tab-width 4
+      indent-tabs-mode t
+      c-basic-offset 4)
 ;; ======= Highlight current line =========
 ;;(global-hl-line-mode 1)
 
 ;; ======= Set standard indent size ========
-(setq standard-indent 2)
+(setq standard-indent 4)
 
 ;; ======= Line by line scrolling ========
 (setq scroll-step 0)
@@ -163,7 +167,7 @@
 (setq kill-ring-max 200)
 (setq default-fill-column 60)
 (setq scroll-margin 3
-      scroll-conservatively 10000)
+      scroll-conservatively 5000)
 
 ;; ======= W3m ========
 (require 'w3m-load)
@@ -181,6 +185,8 @@
 
 ;; ======= Emacs Wiki ========
 (require 'emacs-wiki)
+;; ======= Planner ========
+(require 'planner)
 
 ;; ======= Load color-theme lisp ========
 ;; Must at end of the config file!
