@@ -50,7 +50,7 @@
 (setq font-lock-maximum-decoration t)
 
 ;; ======= Change Tab Width ========
-(setq tab-width 4
+(setq default-tab-width 4
       indent-tabs-mode t
       c-basic-offset 4)
 ;; ======= Highlight current line =========
