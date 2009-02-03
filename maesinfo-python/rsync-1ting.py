@@ -9,6 +9,9 @@
 # Visit http://www.linuxpk.com get more about Linux.
 # Use Python! http://www.python.org
 # Best music site http://www.1ting.com
+#
+# YOU MUST INSTALL Pycurl and BeautifulSoup FIRST!
+# 
 import pycurl, StringIO, re, sys, os
 from BeautifulSoup import BeautifulSoup, Comment
 
