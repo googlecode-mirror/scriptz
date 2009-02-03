@@ -76,7 +76,7 @@ def downloadPage(url, referer=""):
             return None
 
 # download WMA file
-def downloadFile(url, id, refURL):
+def downloadFile(url, refURL):
     """
     
     Arguments:
@@ -96,10 +96,10 @@ def downloadFile(url, id, refURL):
     fWrite.close()
     
 # download Player Page
-def downloadPlayerPage(playerId, refURL):
+def downloadPlayerPage(playerURL, refURL):
     """
     """
-    playerURL = "http://www.1ting.com/player/c1/player_" + playerId + ".html"
+    playerURL = "http://www.1ting.com/player/" + playerURL
     playerPage = downloadPage(playerURL, refURL)
     if playerPage is None:
         print "下载 " + playerURL + " 失败"
@@ -111,7 +111,7 @@ def downloadPlayerPage(playerId, refURL):
         return 0
     p = re.compile('<param name="url" value="(.+?)"')
     match = p.findall(str(content))
-    downloadFile(match[0], playerId, playerURL)
+    downloadFile(match[0], playerURL)
 
 # download Wma
 def downloadWma(url):
@@ -131,11 +131,11 @@ def downloadWma(url):
     content = soup.find('tbody', id="albumSongs")
     if content is None:
         return None
-    p = re.compile('player_(\d+)\.html">')
+    p = re.compile('/([^/]+/[^/]+\.html)">')
     matchs = p.findall(str(content))
     if matchs != None:
-        for playId in matchs:
-            downloadPlayerPage(playId, url)
+        for playerURL in matchs:
+            downloadPlayerPage(playerURL, url)
     else:
         return None
     return 1
