@@ -129,9 +129,13 @@ def downloadWma(url):
         soup.script.extract()
     # 选择一个HTML区域
     content = soup.find('tbody', id="albumSongs")
-    if content is None:
-        return None
     p = re.compile('/([^/]+/[^/]+\.html)">')
+    if content is None:
+        content = soup.find('ul', id="list-1")
+        p = re.compile('/([^/]+/[^/]+\.html)" />')
+        if content is None:
+            return None
+    
     matchs = p.findall(str(content))
     if matchs != None:
         for playerURL in matchs:
