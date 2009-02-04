@@ -19,10 +19,10 @@ DOWNLOAD_DIR = "/home/lenny/music/"
 # Use Pycurl
 def buildHeaders(browser, referer=""):
     """
-    
+    Build HTTP Headers, So we can download wma files.
     Arguments:
-    - `browser`:
-    - `referer`:
+    - `browser`: Which browser will use
+    - `referer`: Referer url
     """
     if referer != "":
         buildHeaders = ['User-Agent: ' + browser, 'Accept: text/html, application/xml;q=0.9, application/xhtml+xml, image/png, image/jpeg, image/gif, image/x-xbitmap, */*;q=0.1', 'Accept-Language: en-us', 'Accept-Encoding: deflate, gzip, x-gzip, identity, *;q=0', 'Accept-Charset: iso-8859-1, utf-8, utf-16, *;q=0.1', 'Cookie: PIN=G39J3kmH2AU0SBieDgavAg==', 'Referer:' + referer]
@@ -33,9 +33,10 @@ def buildHeaders(browser, referer=""):
 # Download web page
 def downloadPage(url, referer=""):
     """
-    
+    Use pycurl to download anything.
     Arguments:
-    - `url`:
+    - `url`: put URL here
+    - `referer`: Referer URL
     """
     USER_AGENT = '"Opera/9.63 (X11; Linux i686; U; en) Presto/2.1.1"'
     theHeaders = buildHeaders(USER_AGENT, referer)
@@ -78,9 +79,9 @@ def downloadPage(url, referer=""):
 # download WMA file
 def downloadFile(url, refURL):
     """
-    
+    Parse player page and download WMA file.
     Arguments:
-    - `url`:
+    - `url`: Player page URL.
     """
     print "下载 " + url + "..."
     wmaFile = downloadPage(url, refURL)
@@ -98,6 +99,7 @@ def downloadFile(url, refURL):
 # download Player Page
 def downloadPlayerPage(playerURL, refURL):
     """
+    
     """
     playerURL = "http://www.1ting.com/player/" + playerURL
     playerPage = downloadPage(playerURL, refURL)
