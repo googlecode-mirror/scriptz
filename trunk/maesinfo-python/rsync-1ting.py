@@ -101,19 +101,21 @@ def downloadPlayerPage(playerURL, refURL):
     """
     
     """
+    server1 = 'http://nonie.dongmuzhi.com:8080'
+    server2 = 'http://f.dongmuzhi.com'
     playerURL = "http://www.1ting.com/player/" + playerURL
     playerPage = downloadPage(playerURL, refURL)
     if playerPage is None:
         print "下载 " + playerURL + " 失败"
         return 0
     soup = BeautifulSoup(playerPage)
-    content = soup.find('div', id="MediaWrapper")
+    content = soup.find('div', {"class":"player"})
     if content is None:
         print "下载 " + playerURL + " 失败"
         return 0
-    p = re.compile('<param name="url" value="(.+?)"')
+    p = re.compile('MusicPlayer\.getInstance\(\)\.build\("(.+?)"')
     match = p.findall(str(content))
-    downloadFile(match[0], playerURL)
+    downloadFile(server2 + match[0], playerURL)
 
 # download Wma
 def downloadWma(url):
@@ -130,8 +132,8 @@ def downloadWma(url):
     for script in soup("script"):
         soup.script.extract()
     # 选择一个HTML区域
-    content = soup.find('tbody', id="albumSongs")
-    p = re.compile('/([^/]+/[^/]+\.html)">')
+    content = soup.find('table', id="song-list")
+    p = re.compile('/([^/]+/[^/]+\.html)" target="_1ting">')
     if content is None:
         content = soup.find('ul', id="list-1")
         p = re.compile('/([^/]+/[^/]+\.html)" />')
