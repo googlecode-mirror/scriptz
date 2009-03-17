@@ -16,6 +16,9 @@ import pycurl, StringIO, re, sys, os
 from BeautifulSoup import BeautifulSoup, Comment
 
 DOWNLOAD_DIR = "/home/lenny/music/"
+SERVER_CACHE = 'http://nonie.dongmuzhi.com:8080'
+SERVER_DOWNLOAD = 'http://f.dongmuzhi.com'
+
 # Use Pycurl
 def buildHeaders(browser, referer=""):
     """
@@ -83,26 +86,25 @@ def downloadFile(url, refURL):
     Arguments:
     - `url`: Player page URL.
     """
-    print "下载 " + url + "..."
-    wmaFile = downloadPage(url, refURL)
-    if wmaFile is None:
-        print "下载 " + url + " 失败"
-        return 0
     p = re.compile('([^/]+)/([^/]+)$')
     match = p.findall(str(url))
-    if not os.path.isdir(DOWNLOAD_DIR + str(match[0][0])):
-        os.mkdir(DOWNLOAD_DIR + str(match[0][0]))
-    fWrite = open(DOWNLOAD_DIR + str(match[0][0]) + "/" + str(match[0][1]), "w")
-    fWrite.write(wmaFile)
-    fWrite.close()
+    if os.path.isfile(DOWNLOAD_DIR + str(match[0][0]) + "/" + 
+        str(match[0][1])):
+        print str(match[0][1]) + " already download, skip..."
+    else:
+        print "下载 " + url + "..."
+        wmaFile = downloadPage(url, refURL)
+        if wmaFile is None:
+            print "下载 " + url + " 失败"
+            return 0
+        if not os.path.isdir(DOWNLOAD_DIR + str(match[0][0])):
+            os.mkdir(DOWNLOAD_DIR + str(match[0][0]))
+        fWrite = open(DOWNLOAD_DIR + str(match[0][0]) + "/" + str(match[0][1]), "w")
+        fWrite.write(wmaFile)
+        fWrite.close()
     
 # download Player Page
 def downloadPlayerPage(playerURL, refURL):
-    """
-    
-    """
-    server1 = 'http://nonie.dongmuzhi.com:8080'
-    server2 = 'http://f.dongmuzhi.com'
     playerURL = "http://www.1ting.com/player/" + playerURL
     playerPage = downloadPage(playerURL, refURL)
     if playerPage is None:
@@ -115,7 +117,7 @@ def downloadPlayerPage(playerURL, refURL):
         return 0
     p = re.compile('MusicPlayer\.getInstance\(\)\.build\("(.+?)"')
     match = p.findall(str(content))
-    downloadFile(server2 + match[0], playerURL)
+    downloadFile(SERVER_DOWNLOAD + match[0], playerURL)
 
 # download Wma
 def downloadWma(url):
