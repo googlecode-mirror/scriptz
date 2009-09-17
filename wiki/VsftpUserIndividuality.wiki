@@ -58,3 +58,6 @@ echo “anon_upload_enable=YES” >> /etc/vsftpd/vsftpd_user_conf/$1
 echo “anon_mkdir_write_enable=YES” >> /etc/vsftpd/vsftpd_user_conf/$1
 fi
 }}}
+
+== vsftpd with pam_pwdfile ==
+[http://www.productionmonkeys.net/guides/ftp-server/vsftpd vsftpd with pam_pwdfile ]
