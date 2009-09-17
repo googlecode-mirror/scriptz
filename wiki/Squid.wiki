@@ -1,0 +1,5 @@
+#summary One-sentence summary of this page.
+
+= Squid服务器 =
+
+ * [http://blog.last.fm/2007/08/30/squid-optimization-guide last.fm上的优化]
