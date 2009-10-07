@@ -15,10 +15,12 @@ squid+nginx负载均衡实现单机跑多个squid.
 *具体步骤如下：*
 
  # 将N个squid安装到不同目录，并指定好多个用户以及不同的监听端口，这样便于监控时查看，例如：
+{{{
    squid1：/opt/squid1 监听在127.0.0.1:8081
-   squid2：/opt/squid2 监听在127.0.0.1:8082
-   squid3：/opt/squid3 监听在127.0.0.1:8083
- # 编译并安装，配置nginx
+   squid2：/opt/squid2 监听在127.0.0.1:8082 
+   squid3：/opt/squid3 监听在127.0.0.1:8083 
+}}}
+ # 编译并安装，配置nginx 
 {{{
 ./configure
 }}}
